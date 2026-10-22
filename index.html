@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>trending-agent-skills — Trending Agent Skills & AI Repos</title>
+<title>trending-agent-skills — Trending Agent Skills &amp; AI Repos</title>
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; background: #f6f8fa; color: #1f2328;
          font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
   .wrap { max-width: 860px; margin: 0 auto; padding: 32px 20px 56px; }
-  header { margin-bottom: 8px; }
   h1 { font-size: 26px; margin: 0 0 6px; }
+  h1 a { color: inherit; text-decoration: none; }
   .sub { color: #59636e; font-size: 14px; margin: 0 0 14px; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip { background: #fff; border: 1px solid #d1d9e0; border-radius: 999px;
@@ -29,13 +29,14 @@
   .zh { margin: 0 0 4px; font-size: 14px; line-height: 1.55; }
   .en { margin: 0; font-size: 12.5px; line-height: 1.5; color: #59636e; }
   footer { margin-top: 34px; color: #818c98; font-size: 12px; }
+  footer a { color: #0969da; text-decoration: none; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>📈 trending-agent-skills</h1>
-    <p class="sub">每日监控 GitHub 趋势榜自动维护：新仓库入库、star 数每日刷新、主页概括中英双语。</p>
+    <h1>📈 <a href="https://github.com/longkum/trending-agent-skills">trending-agent-skills</a></h1>
+    <p class="sub">Daily-tracked trending AI agent skills &amp; AI repositories from GitHub Trending. 每日追踪 GitHub 趋势榜的 skills 与 AI 热门仓库，中英双语概括。</p>
     <div class="chips">
       <span class="chip">共 <b>43</b> 个仓库</span>
       <span class="chip">Skills <b>18</b></span>
@@ -437,7 +438,7 @@
       <p class="en">Video restoration tool using AI diffusion models for video/image restoration (GPU required).</p>
     </article>
   </section>
-  <footer>数据来源：GitHub Trending 日榜/月榜 + GitHub Repos API。star 数为最近一次刷新值。</footer>
+  <footer>Data: GitHub Trending + GitHub API · Repo: <a href="https://github.com/longkum/trending-agent-skills">github.com/longkum/trending-agent-skills</a> · Raw data: <a href="data/repos.json">data/repos.json</a></footer>
 </div>
 </body>
 </html>

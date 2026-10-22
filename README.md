@@ -6,7 +6,7 @@
 
 **43 repos tracked** · Skills 18 · AI 25 · Total stars 3,343,769 · Updated 2026-10-22
 
-📖 **Live catalog / 在线图鉴**: see `index.html` (GitHub Pages) · Raw data: [`data/repos.json`](data/repos.json)
+📖 **Live catalog / 在线图鉴**: https://longkum.github.io/trending-agent-skills/ · Raw data: [`data/repos.json`](data/repos.json)
 
 ## Skills (18)
 
