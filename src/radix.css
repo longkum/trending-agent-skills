@@ -1,0 +1,245 @@
+/* Radix Colors, MIT: https://github.com/radix-ui/colors
+   Official sand, jade, blue and red scales. Component styles use semantic aliases. */
+:root { --black-a7: rgba(0, 0, 0, 0.5); }
+:root, [data-theme="light"] {
+
+  --sand-1: #fdfdfc;
+  --sand-2: #f9f9f8;
+  --sand-3: #f1f0ef;
+  --sand-4: #e9e8e6;
+  --sand-5: #e2e1de;
+  --sand-6: #dad9d6;
+  --sand-7: #cfceca;
+  --sand-8: #bcbbb5;
+  --sand-9: #8d8d86;
+  --sand-10: #82827c;
+  --sand-11: #63635e;
+  --sand-12: #21201c;
+
+  --sand-a1: #55550003;
+  --sand-a2: #25250007;
+  --sand-a3: #20100010;
+  --sand-a4: #1f150019;
+  --sand-a5: #1f180021;
+  --sand-a6: #19130029;
+  --sand-a7: #19140035;
+  --sand-a8: #1915014a;
+  --sand-a9: #0f0f0079;
+  --sand-a10: #0c0c0083;
+  --sand-a11: #080800a1;
+  --sand-a12: #060500e3;
+
+  --jade-1: #fbfefd;
+  --jade-2: #f4fbf7;
+  --jade-3: #e6f7ed;
+  --jade-4: #d6f1e3;
+  --jade-5: #c3e9d7;
+  --jade-6: #acdec8;
+  --jade-7: #8bceb6;
+  --jade-8: #56ba9f;
+  --jade-9: #29a383;
+  --jade-10: #26997b;
+  --jade-11: #208368;
+  --jade-12: #1d3b31;
+
+  --jade-a1: #00c08004;
+  --jade-a2: #00a3460b;
+  --jade-a3: #00ae4819;
+  --jade-a4: #00a85129;
+  --jade-a5: #00a2553c;
+  --jade-a6: #009a5753;
+  --jade-a7: #00945f74;
+  --jade-a8: #00976ea9;
+  --jade-a9: #00916bd6;
+  --jade-a10: #008764d9;
+  --jade-a11: #007152df;
+  --jade-a12: #002217e2;
+
+  --blue-1: #fbfdff;
+  --blue-2: #f4faff;
+  --blue-3: #e6f4fe;
+  --blue-4: #d5efff;
+  --blue-5: #c2e5ff;
+  --blue-6: #acd8fc;
+  --blue-7: #8ec8f6;
+  --blue-8: #5eb1ef;
+  --blue-9: #0090ff;
+  --blue-10: #0588f0;
+  --blue-11: #0d74ce;
+  --blue-12: #113264;
+
+  --red-1: #fffcfc;
+  --red-2: #fff7f7;
+  --red-3: #feebec;
+  --red-4: #ffdbdc;
+  --red-5: #ffcdce;
+  --red-6: #fdbdbe;
+  --red-7: #f4a9aa;
+  --red-8: #eb8e90;
+  --red-9: #e5484d;
+  --red-10: #dc3e42;
+  --red-11: #ce2c31;
+  --red-12: #641723;
+}
+@media (prefers-color-scheme: dark) {
+:root:not([data-theme="light"]) {
+
+  --sand-1: #111110;
+  --sand-2: #191918;
+  --sand-3: #222221;
+  --sand-4: #2a2a28;
+  --sand-5: #31312e;
+  --sand-6: #3b3a37;
+  --sand-7: #494844;
+  --sand-8: #62605b;
+  --sand-9: #6f6d66;
+  --sand-10: #7c7b74;
+  --sand-11: #b5b3ad;
+  --sand-12: #eeeeec;
+
+  --sand-a1: #00000000;
+  --sand-a2: #f4f4f309;
+  --sand-a3: #f6f6f513;
+  --sand-a4: #fefef31b;
+  --sand-a5: #fbfbeb23;
+  --sand-a6: #fffaed2d;
+  --sand-a7: #fffbed3c;
+  --sand-a8: #fff9eb57;
+  --sand-a9: #fffae965;
+  --sand-a10: #fffdee73;
+  --sand-a11: #fffcf4b0;
+  --sand-a12: #fffffded;
+
+  --jade-1: #0d1512;
+  --jade-2: #121c18;
+  --jade-3: #0f2e22;
+  --jade-4: #0b3b2c;
+  --jade-5: #114837;
+  --jade-6: #1b5745;
+  --jade-7: #246854;
+  --jade-8: #2a7e68;
+  --jade-9: #29a383;
+  --jade-10: #27b08b;
+  --jade-11: #1fd8a4;
+  --jade-12: #adf0d4;
+
+  --jade-a1: #00de4505;
+  --jade-a2: #27fba60c;
+  --jade-a3: #02f99920;
+  --jade-a4: #00ffaa2d;
+  --jade-a5: #11ffb63b;
+  --jade-a6: #34ffc24b;
+  --jade-a7: #45fdc75e;
+  --jade-a8: #48ffcf75;
+  --jade-a9: #38feca9d;
+  --jade-a10: #31fec7ab;
+  --jade-a11: #21fec0d6;
+  --jade-a12: #b8ffe1ef;
+
+  --blue-1: #0d1520;
+  --blue-2: #111927;
+  --blue-3: #0d2847;
+  --blue-4: #003362;
+  --blue-5: #004074;
+  --blue-6: #104d87;
+  --blue-7: #205d9e;
+  --blue-8: #2870bd;
+  --blue-9: #0090ff;
+  --blue-10: #3b9eff;
+  --blue-11: #70b8ff;
+  --blue-12: #c2e6ff;
+
+  --red-1: #191111;
+  --red-2: #201314;
+  --red-3: #3b1219;
+  --red-4: #500f1c;
+  --red-5: #611623;
+  --red-6: #72232d;
+  --red-7: #8c333a;
+  --red-8: #b54548;
+  --red-9: #e5484d;
+  --red-10: #ec5d5e;
+  --red-11: #ff9592;
+  --red-12: #ffd1d9;
+}
+}
+:root[data-theme="dark"] {
+
+  --sand-1: #111110;
+  --sand-2: #191918;
+  --sand-3: #222221;
+  --sand-4: #2a2a28;
+  --sand-5: #31312e;
+  --sand-6: #3b3a37;
+  --sand-7: #494844;
+  --sand-8: #62605b;
+  --sand-9: #6f6d66;
+  --sand-10: #7c7b74;
+  --sand-11: #b5b3ad;
+  --sand-12: #eeeeec;
+
+  --sand-a1: #00000000;
+  --sand-a2: #f4f4f309;
+  --sand-a3: #f6f6f513;
+  --sand-a4: #fefef31b;
+  --sand-a5: #fbfbeb23;
+  --sand-a6: #fffaed2d;
+  --sand-a7: #fffbed3c;
+  --sand-a8: #fff9eb57;
+  --sand-a9: #fffae965;
+  --sand-a10: #fffdee73;
+  --sand-a11: #fffcf4b0;
+  --sand-a12: #fffffded;
+
+  --jade-1: #0d1512;
+  --jade-2: #121c18;
+  --jade-3: #0f2e22;
+  --jade-4: #0b3b2c;
+  --jade-5: #114837;
+  --jade-6: #1b5745;
+  --jade-7: #246854;
+  --jade-8: #2a7e68;
+  --jade-9: #29a383;
+  --jade-10: #27b08b;
+  --jade-11: #1fd8a4;
+  --jade-12: #adf0d4;
+
+  --jade-a1: #00de4505;
+  --jade-a2: #27fba60c;
+  --jade-a3: #02f99920;
+  --jade-a4: #00ffaa2d;
+  --jade-a5: #11ffb63b;
+  --jade-a6: #34ffc24b;
+  --jade-a7: #45fdc75e;
+  --jade-a8: #48ffcf75;
+  --jade-a9: #38feca9d;
+  --jade-a10: #31fec7ab;
+  --jade-a11: #21fec0d6;
+  --jade-a12: #b8ffe1ef;
+
+  --blue-1: #0d1520;
+  --blue-2: #111927;
+  --blue-3: #0d2847;
+  --blue-4: #003362;
+  --blue-5: #004074;
+  --blue-6: #104d87;
+  --blue-7: #205d9e;
+  --blue-8: #2870bd;
+  --blue-9: #0090ff;
+  --blue-10: #3b9eff;
+  --blue-11: #70b8ff;
+  --blue-12: #c2e6ff;
+
+  --red-1: #191111;
+  --red-2: #201314;
+  --red-3: #3b1219;
+  --red-4: #500f1c;
+  --red-5: #611623;
+  --red-6: #72232d;
+  --red-7: #8c333a;
+  --red-8: #b54548;
+  --red-9: #e5484d;
+  --red-10: #ec5d5e;
+  --red-11: #ff9592;
+  --red-12: #ffd1d9;
+}

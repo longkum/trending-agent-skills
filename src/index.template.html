@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="检索 {{TOTAL}} 个 GitHub 趋势仓库，发现 Agent Skills 与 AI 开源项目。支持关键词搜索、分类与排序。">
+  <title>Trending Agent Skills — GitHub 开源图鉴</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23e6f7ed'/%3E%3Cpath d='M6 24V16H10V24ZM14 24V10H18V24ZM22 24V5H26V24Z' fill='%231d3b31'/%3E%3C/svg%3E">
+  <script>
+    try { var savedTheme = localStorage.getItem('tas-theme'); if (savedTheme === 'light' || savedTheme === 'dark') document.documentElement.dataset.theme = savedTheme; } catch (_) {}
+  </script>
+  <style>{{STYLES}}</style>
+</head>
+<body>
+  <a class="skip-link" href="#catalog">跳到仓库目录</a>
+  <div class="wrap">
+    <nav class="topbar" aria-label="主导航">
+      <a class="wordmark" href="./" aria-label="Trending Agent Skills 首页">
+        <svg class="brand-mark" aria-hidden="true" viewBox="0 0 32 32"><path d="M4 26V17H9V26ZM13.5 26V10H18.5V26ZM23 26V3H28V26Z"/></svg>
+        <span>trending-agent-skills</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://github.com/longkum/trending-agent-skills" target="_blank" rel="noopener noreferrer">项目源码 <span aria-hidden="true">↗</span></a>
+        <a href="data/repos.json" target="_blank" rel="noopener noreferrer">原始数据 <span aria-hidden="true">↗</span></a>
+        <button class="theme-button" id="theme-toggle" type="button" aria-label="切换深色模式" aria-pressed="false" hidden>
+          <svg class="icon theme-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9Zm0 16.5v-15a7.5 7.5 0 0 1 0 15Z"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <header class="hero">
+        <div class="hero-copy">
+          <h1>Agent Skills<br><span>与 AI 仓库图鉴</span></h1>
+          <p class="update-line"><span class="status-dot" aria-hidden="true"></span><span>数据更新 <time datetime="{{UPDATED}}">{{UPDATED}}</time></span><span class="new-count">本次新增 {{NEW_COUNT}}</span></p>
+        </div>
+        <div class="stats" aria-label="图鉴统计">
+          <div class="stat-total"><strong>{{TOTAL}}</strong><span>个收录仓库</span></div>
+          <dl class="stat-breakdown">
+            <div><dt>Skills</dt><dd>{{SKILLS}}</dd></div>
+            <div><dt>AI</dt><dd>{{AI}}</dd></div>
+            <div><dt>总星数</dt><dd>{{STARS}}</dd></div>
+          </dl>
+        </div>
+      </header>
+
+      <section class="catalog" id="catalog" aria-label="仓库目录" tabindex="-1">
+        <form class="filter" id="search-form" role="search">
+          <div class="controls-row">
+            <div class="search-field">
+              <svg class="icon search-icon" aria-hidden="true" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M10.5 3a7.5 7.5 0 1 0 4.66 13.38l4.98 4.97 1.06-1.06-4.97-4.98A7.5 7.5 0 0 0 10.5 3Zm-6 7.5a6 6 0 1 1 12 0 6 6 0 0 1-12 0Z"/></svg>
+              <label class="sr-only" for="q">搜索仓库名称、用途或关键词</label>
+              <input id="q" name="q" type="search" placeholder="仓库名称、用途或关键词" autocomplete="off" maxlength="200" disabled>
+              <kbd class="search-shortcut" aria-hidden="true">/</kbd>
+              <button class="clear-query" id="clear-query" type="button" aria-label="清空搜索关键词" hidden>×</button>
+            </div>
+            <div class="tabs" role="group" aria-label="仓库分类">
+              <button type="button" data-track="all" aria-pressed="true" disabled>全部 <span data-tab-count="all">{{TOTAL}}</span></button>
+              <button type="button" data-track="skills" aria-pressed="false" disabled>Skills <span data-tab-count="skills">{{SKILLS}}</span></button>
+              <button type="button" data-track="ai" aria-pressed="false" disabled>AI <span data-tab-count="ai">{{AI}}</span></button>
+            </div>
+          </div>
+          <div class="results-toolbar">
+            <div class="results-context">
+              <p id="count" role="status" aria-live="polite" aria-atomic="true">正在整理目录…</p>
+              <button class="text-button reset-filters" type="button" id="reset-filters" hidden>清除筛选</button>
+            </div>
+            <label class="sort" for="sort"><span>分类内排序</span>
+              <select id="sort" name="sort" disabled>
+                <option value="stars">星数最高</option>
+                <option value="seen">最新入库</option>
+                <option value="created">创建最新</option>
+              </select>
+            </label>
+          </div>
+        </form>
+
+        <noscript><style>.filter, #results { display: none; }</style><div class="fallback"><h2>浏览完整目录</h2><p>搜索与分页需要 JavaScript。你也可以查看 <a href="https://github.com/longkum/trending-agent-skills#readme">GitHub 文字目录</a>或 <a href="data/repos.json">原始数据</a>。</p></div></noscript>
+
+        <div id="results" aria-busy="true">
+          <section class="ledger" id="skills" aria-labelledby="skills-title" hidden>
+            <div class="section-head"><div class="section-title"><span class="section-symbol skills-symbol" aria-hidden="true">↗</span><h2 id="skills-title" tabindex="-1">Skills</h2><p class="section-count" id="skills-count"></p></div><a class="section-jump" href="#ai">前往 AI <span aria-hidden="true">↓</span></a></div>
+            <div class="col-head" aria-hidden="true"><span>序号</span><span>仓库与简介</span><span>星数</span><span data-date-heading>创建日期</span></div>
+            <div class="repo-list" id="skills-list" role="list" aria-label="Skills 仓库"></div>
+            <div class="pagination" id="skills-pagination"></div>
+          </section>
+          <section class="ledger" id="ai" aria-labelledby="ai-title" hidden>
+            <div class="section-head"><div class="section-title"><span class="section-symbol ai-symbol" aria-hidden="true">✳</span><h2 id="ai-title" tabindex="-1">AI</h2><p class="section-count" id="ai-count"></p></div><a class="section-jump" href="#catalog">返回检索 <span aria-hidden="true">↑</span></a></div>
+            <div class="col-head" aria-hidden="true"><span>序号</span><span>仓库与简介</span><span>星数</span><span data-date-heading>创建日期</span></div>
+            <div class="repo-list" id="ai-list" role="list" aria-label="AI 仓库"></div>
+            <div class="pagination" id="ai-pagination"></div>
+          </section>
+        </div>
+
+        <section class="empty-state" id="empty-state" aria-labelledby="empty-title" hidden>
+          <span class="empty-symbol" aria-hidden="true">∅</span>
+          <h2 id="empty-title">没有匹配的仓库</h2>
+          <p id="empty-context">试试更短的关键词，或清除当前筛选。</p>
+          <button class="action-button" type="button" id="empty-reset">清除筛选</button>
+        </section>
+        <section class="fallback error-state" id="error-state" role="alert" hidden>
+          <h2>目录暂时无法显示</h2><p>请重新加载页面，或查看 <a href="data/repos.json">原始数据</a>。</p><button class="action-button" type="button" id="retry">重新加载</button>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div><span class="footer-brand">Trending Agent Skills</span><p>数据来源：GitHub Trending 与 GitHub API。星数以各仓库最近一次采集为准。</p></div>
+      <a href="https://github.com/longkum/trending-agent-skills#readme" target="_blank" rel="noopener noreferrer">项目说明 <span aria-hidden="true">↗</span></a>
+    </footer>
+  </div>
+
+  <dialog class="repo-dialog" id="repo-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-top"><span id="dialog-track"></span><button class="close-dialog" type="button" aria-label="关闭仓库详情">关闭 <span aria-hidden="true">×</span></button></div>
+    <h2 id="dialog-title"></h2>
+    <div class="dialog-body"><p id="dialog-summary"></p><div id="dialog-translation" hidden><h3>英文摘要</h3><p id="dialog-summary-en" lang="en"></p></div><dl class="dialog-meta" id="dialog-meta"></dl></div>
+    <div class="dialog-actions"><a class="action-button" id="dialog-repo" href="https://github.com/longkum/trending-agent-skills" target="_blank" rel="noopener noreferrer">打开 GitHub 仓库 <span aria-hidden="true">↗</span></a></div>
+  </dialog>
+
+  <script id="catalog-data" type="application/json">{{DATA}}</script>
+  <script>{{SCRIPTS}}</script>
+</body>
+</html>
