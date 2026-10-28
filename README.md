@@ -2040,6 +2040,17 @@ Raw data: [`data/repos.json`](data/repos.json)
 
 数据源为 GitHub 趋势榜（日榜 + 月榜回填），按仓库名、简介与 topics 筛选 skills 与 AI 相关仓库，每日增量更新。
 
+## 友情链接 / Friend Sites
+
+- [askpdf.top](https://askpdf.top)
+- [deepseekdsh.com](https://deepseekdsh.com)
+- [freeaivoicegenerator.com](https://freeaivoicegenerator.com)
+- [randomanimalpicker.com](https://randomanimalpicker.com)
+- [residentevilveronica.com](https://residentevilveronica.com)
+- [rule34higherorlower.com](https://rule34higherorlower.com)
+- [videoscriptextractor.com](https://videoscriptextractor.com)
+- [yesornotarot.love](https://yesornotarot.love)
+
 ## License
 
 MIT
