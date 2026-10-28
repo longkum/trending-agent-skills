@@ -365,7 +365,7 @@ h1 span { letter-spacing: -0.025em; }
 .sort select { font-size: var(--text-small); background: var(--page); border: var(--hairline) solid var(--line); padding: 8px 12px; border-radius: var(--radius); min-height: 40px; }
 .ledger { margin-top: 20px; scroll-margin-top: 24px; }
 .ledger + .ledger { margin-top: 56px; }
-.section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.section-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; padding: 0 16px; }
 .section-title { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 h2 { margin: 0; font-size: var(--text-title); line-height: 1.3; letter-spacing: -0.03em; font-weight: 600; }
 .section-symbol { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 2px; font-size: var(--text-body); }
@@ -373,6 +373,7 @@ h2 { margin: 0; font-size: var(--text-title); line-height: 1.3; letter-spacing: 
 .ai-symbol { background: var(--ai-subtle); color: var(--ai-text); }
 .section-count { margin: 2px 0 0; font-size: var(--text-small); color: var(--muted); font-variant-numeric: tabular-nums; }
 .section-jump { font-size: var(--text-small); color: var(--muted); display: flex; align-items: center; gap: 8px; min-height: 44px; }
+.section-jump svg { width: 14px; height: 14px; flex: none; }
 .col-head, .row { display: grid; grid-template-columns: 36px minmax(0, 1fr) 112px 104px; gap: 20px; }
 .col-head { padding: 0 16px 12px; border-bottom: var(--hairline) solid var(--line); color: var(--muted); font-size: var(--text-small); }
 .col-head span:nth-last-child(-n+2) { text-align: right; }
@@ -568,13 +569,13 @@ body:has(dialog[open]) { overflow: hidden; }
 
         <div id="results" aria-busy="true">
           <section class="ledger" id="skills" aria-labelledby="skills-title" hidden>
-            <div class="section-head"><div class="section-title"><span class="section-symbol skills-symbol" aria-hidden="true">↗</span><h2 id="skills-title" tabindex="-1">Skills</h2><p class="section-count" id="skills-count"></p></div><a class="section-jump" href="#ai">前往 AI <span aria-hidden="true">↓</span></a></div>
+            <div class="section-head"><div class="section-title"><span class="section-symbol skills-symbol" aria-hidden="true">↗</span><h2 id="skills-title" tabindex="-1">Skills</h2><p class="section-count" id="skills-count"></p></div><a class="section-jump" href="#ai">前往 AI <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a></div>
             <div class="col-head" aria-hidden="true"><span>序号</span><span>仓库与简介</span><span>星数</span><span data-date-heading>创建日期</span></div>
             <div class="repo-list" id="skills-list" role="list" aria-label="Skills 仓库"></div>
             <div class="pagination" id="skills-pagination"></div>
           </section>
           <section class="ledger" id="ai" aria-labelledby="ai-title" hidden>
-            <div class="section-head"><div class="section-title"><span class="section-symbol ai-symbol" aria-hidden="true">✳</span><h2 id="ai-title" tabindex="-1">AI</h2><p class="section-count" id="ai-count"></p></div><a class="section-jump" href="#catalog">返回检索 <span aria-hidden="true">↑</span></a></div>
+            <div class="section-head"><div class="section-title"><span class="section-symbol ai-symbol" aria-hidden="true">✳</span><h2 id="ai-title" tabindex="-1">AI</h2><p class="section-count" id="ai-count"></p></div><a class="section-jump" href="#catalog">返回检索 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a></div>
             <div class="col-head" aria-hidden="true"><span>序号</span><span>仓库与简介</span><span>星数</span><span data-date-heading>创建日期</span></div>
             <div class="repo-list" id="ai-list" role="list" aria-label="AI 仓库"></div>
             <div class="pagination" id="ai-pagination"></div>
