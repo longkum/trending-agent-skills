@@ -4,9 +4,11 @@
 >
 > 每日追踪 GitHub 趋势榜上的 **AI agent skills** 与 **AI 热门仓库**：新上榜即收录，star 数每日刷新，附中英双语主页概括。
 
-**2011 repos tracked** · Skills 1278 · AI 733 · Total stars 33,964,694 · Updated 2026-10-28
+**2011 repos tracked**, Skills 1278, AI 733, Total stars 33,964,694, Updated 2026-10-28
 
-📖 **Live catalog / 在线图鉴**: https://longkum.github.io/trending-agent-skills/ · Raw data: [`data/repos.json`](data/repos.json)
+📖 **Live catalog / 在线图鉴**: https://longkum.github.io/trending-agent-skills/
+
+Raw data: [`data/repos.json`](data/repos.json)
 
 ## Skills (1278)
 
