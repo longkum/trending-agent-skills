@@ -141,7 +141,7 @@ def prepare_catalog(source: object) -> tuple[dict, dict]:
     }
     names = dict(CATEGORIES)
     categories = [{"id": cid, "name": names[cid], "count": cats[cid]}
-                  for cid, _ in sorted(CATEGORIES, key=lambda c: (-cats[c[0]], c[1]))]
+                  for cid, _ in sorted(CATEGORIES, key=lambda c: (c[0] == "other", -cats[c[0]], c[1]))]
     return {"updated": updated, "records": records, "categories": categories}, stats
 
 

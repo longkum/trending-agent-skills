@@ -86,8 +86,9 @@ class BuildTests(unittest.TestCase):
         self.assertEqual(by_id["coding"]["name"], "AI 编程")
         self.assertEqual(by_id["other"]["count"], 1)
         self.assertEqual(len(payload["categories"]), len(build.CATEGORIES))
-        # Sorted by count descending.
-        counts = [item["count"] for item in payload["categories"]]
+        # Sorted by count descending, with 'other' always last.
+        self.assertEqual(payload["categories"][-1]["id"], "other")
+        counts = [item["count"] for item in payload["categories"][:-1]]
         self.assertEqual(counts, sorted(counts, reverse=True))
         self.assertEqual(payload["records"][0]["category"], "coding")
 
