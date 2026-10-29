@@ -10,6 +10,11 @@
 
   var TRACKS = ['all', 'skills', 'ai'];
   var SORTS = ['stars', 'seen', 'created'];
+  // Domain category ids. Keep in sync with scripts/build.py CATEGORIES and
+  // ~/workspace/goals/github-skills-ai/hidden_files/classify.py CATEGORIES.
+  var CATEGORY_IDS = ['finance', 'security', 'media', 'design', 'mcp',
+    'marketing', 'rag', 'crawl', 'assistant', 'coding', 'agent', 'models',
+    'data', 'learn', 'productivity', 'devops', 'skills', 'game', 'other'];
   var ENTITIES = Object.freeze({
     amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ',
     ndash: '–', mdash: '—', middot: ' ', bull: '•', hellip: '…',
@@ -51,8 +56,12 @@
       var summary = normalizeText(record.summary);
       var description = normalizeText(record.description);
       var english = normalizeText(record.summary_en);
+      // The build validates categories strictly; the browser degrades an
+      // unknown or missing value to 'other' instead of dropping the record.
+      var category = CATEGORY_IDS.indexOf(record.category) !== -1 ? record.category : 'other';
       return Object.assign({}, record, {
         stars: starValue(record.stars),
+        category: category,
         summary: summary || description || english,
         summary_en: english,
         description: description,
@@ -122,6 +131,11 @@
     return groups;
   }
 
+  function filterByCategory(records, category) {
+    if (!category || category === 'all' || CATEGORY_IDS.indexOf(category) === -1) return records.slice();
+    return records.filter(function (record) { return record.category === category; });
+  }
+
   function pageNumber(value) {
     var text = String(value == null ? '' : value);
     if (!/^[1-9]\d*$/.test(text)) return 1;
@@ -137,10 +151,12 @@
     var params = new URLSearchParams(typeof search === 'string' ? search : '');
     var track = params.get('track');
     var sort = params.get('sort');
+    var category = params.get('category');
     return {
       q: queryValue(params.get('q')),
       track: TRACKS.indexOf(track) !== -1 ? track : 'all',
       sort: SORTS.indexOf(sort) !== -1 ? sort : 'stars',
+      category: CATEGORY_IDS.indexOf(category) !== -1 ? category : 'all',
       pages: { skills: pageNumber(params.get('skillsPage')), ai: pageNumber(params.get('aiPage')) }
     };
   }
@@ -153,6 +169,7 @@
     if (q) params.set('q', q);
     if (state.track === 'skills' || state.track === 'ai') params.set('track', state.track);
     if (state.sort === 'seen' || state.sort === 'created') params.set('sort', state.sort);
+    if (state.category && state.category !== 'all' && CATEGORY_IDS.indexOf(state.category) !== -1) params.set('category', state.category);
     var pages = state.pages || {};
     var skillsPage = pageNumber(pages.skills);
     var aiPage = pageNumber(pages.ai);
@@ -166,6 +183,7 @@
     normalizeText: normalizeText,
     prepareRecords: prepareRecords,
     searchRecords: searchRecords,
+    filterByCategory: filterByCategory,
     sortRecords: sortRecords,
     safeRepoUrl: safeRepoUrl,
     groupRecords: groupRecords,

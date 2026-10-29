@@ -6,6 +6,7 @@ const Core = require('../src/catalog-core.js');
 
 const fixture = (name, overrides = {}) => ({
   name, url: `https://github.com/${name}`, track: 'skills', stars: 10,
+  category: 'coding',
   summary: '代码审查与设计', summary_en: 'Code review and design', description: '',
   created_at: '2026-01-01', first_seen: '2026-10-26', last_refreshed: '2026-10-28',
   ...overrides
@@ -74,12 +75,30 @@ test('repository links reject credentials, protocols, redirects, path tricks and
   assert.equal(Core.safeRepoUrl(fixture('Org/..')), null);
 });
 
+test('category filtering keeps unknown values in other and rejects bad URL values', () => {
+  const rows = Core.prepareRecords([
+    fixture('org/a', { category: 'design' }),
+    fixture('org/b', { category: 'bogus' }),
+    fixture('org/c', {}),
+  ]);
+  const prepared = Core.prepareRecords([fixture('org/c', {})]);
+  assert.equal(prepared[0].category, 'coding');
+  assert.equal(rows[0].category, 'design');
+  assert.equal(rows[1].category, 'other');
+  assert.equal(Core.filterByCategory(rows, 'all').length, 3);
+  assert.equal(Core.filterByCategory(rows, 'design').length, 1);
+  assert.equal(Core.filterByCategory(rows, 'design')[0].name, 'org/a');
+  assert.equal(Core.filterByCategory(rows, 'bogus').length, 3);
+  assert.equal(Core.filterByCategory(rows, '').length, 3);
+  assert.notEqual(Core.filterByCategory(rows, 'design'), rows);
+});
+
 test('URL state roundtrips and rejects invalid categories, dates, pages and oversized queries', () => {
-  const state = { q: '代码 review & design', track: 'ai', sort: 'seen', pages: { skills: 2, ai: 3 } };
+  const state = { q: '代码 review & design', track: 'ai', sort: 'seen', category: 'media', pages: { skills: 2, ai: 3 } };
   assert.deepEqual(Core.readState(Core.stateQuery(state)), state);
   assert.equal(Core.stateQuery(Core.readState('?utm_source=test')), '');
-  assert.deepEqual(Core.readState('?track=bad&sort=bad&skillsPage=-1&aiPage=Infinity'), {
-    q: '', track: 'all', sort: 'stars', pages: { skills: 1, ai: 1 }
+  assert.deepEqual(Core.readState('?track=bad&sort=bad&category=bad&skillsPage=-1&aiPage=Infinity'), {
+    q: '', track: 'all', sort: 'stars', category: 'all', pages: { skills: 1, ai: 1 }
   });
   for (const invalid of ['0', '1.5', '01', '1e3', '9007199254740992']) {
     assert.equal(Core.readState('?skillsPage=' + invalid).pages.skills, 1);

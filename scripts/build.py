@@ -23,6 +23,30 @@ NAME_RE = re.compile(
 PLACEHOLDER_RE = re.compile(r"\{\{([A-Z_]+)\}\}")
 DATE_FIELDS = ("created_at", "first_seen", "last_refreshed")
 TEXT_FIELDS = ("summary", "summary_en", "description")
+# Domain categories for the catalog filter. Keep in sync with
+# ~/workspace/goals/github-skills-ai/hidden_files/classify.py CATEGORIES.
+CATEGORIES = (
+    ("finance", "金融交易"),
+    ("security", "安全攻防"),
+    ("media", "音视频语音"),
+    ("design", "设计创意"),
+    ("mcp", "MCP 生态"),
+    ("marketing", "营销内容"),
+    ("rag", "RAG 与知识库"),
+    ("crawl", "搜索与采集"),
+    ("assistant", "对话与助手"),
+    ("coding", "AI 编程"),
+    ("agent", "Agent 框架与工作流"),
+    ("models", "模型与推理"),
+    ("data", "数据分析"),
+    ("learn", "学习与合集"),
+    ("productivity", "效率办公"),
+    ("devops", "开发运维"),
+    ("skills", "Skills 通用"),
+    ("game", "游戏"),
+    ("other", "其他"),
+)
+CATEGORY_IDS = frozenset(cid for cid, _ in CATEGORIES)
 
 
 class BuildError(ValueError):
@@ -75,11 +99,14 @@ def prepare_catalog(source: object) -> tuple[dict, dict]:
         track = item.get("track")
         if track not in ("skills", "ai"):
             raise BuildError(f"{name}: track must be skills or ai")
+        category = item.get("category")
+        if category not in CATEGORY_IDS:
+            raise BuildError(f"{name}: category must be one of {sorted(CATEGORY_IDS)}")
         stars = item.get("stars")
         if isinstance(stars, bool) or not isinstance(stars, int) or stars < 0:
             raise BuildError(f"{name}: stars must be a non-negative integer")
         record = {"name": name, "url": validate_repo_url(name, item.get("url")),
-                  "track": track, "stars": stars}
+                  "track": track, "stars": stars, "category": category}
         for field in DATE_FIELDS:
             value = item.get(field)
             if not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
@@ -103,6 +130,7 @@ def prepare_catalog(source: object) -> tuple[dict, dict]:
 
     updated = max(record["last_refreshed"] for record in records)
     tracks = Counter(record["track"] for record in records)
+    cats = Counter(record["category"] for record in records)
     stats = {
         "TOTAL": f"{len(records):,}",
         "SKILLS": f"{tracks['skills']:,}",
@@ -111,7 +139,10 @@ def prepare_catalog(source: object) -> tuple[dict, dict]:
         "UPDATED": updated,
         "NEW_COUNT": f"{sum(record['first_seen'] == updated for record in records):,}",
     }
-    return {"updated": updated, "records": records}, stats
+    names = dict(CATEGORIES)
+    categories = [{"id": cid, "name": names[cid], "count": cats[cid]}
+                  for cid, _ in sorted(CATEGORIES, key=lambda c: (-cats[c[0]], c[1]))]
+    return {"updated": updated, "records": records, "categories": categories}, stats
 
 
 def inline_json(value: object) -> str:

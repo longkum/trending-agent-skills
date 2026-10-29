@@ -17,6 +17,7 @@ SPEC.loader.exec_module(build)
 def record(name="example/repo", **changes):
     value = {
         "url": "https://github.com/" + name, "track": "skills", "stars": 42,
+        "category": "coding",
         "created_at": "2026-01-01", "first_seen": "2026-10-27",
         "last_refreshed": "2026-10-28", "summary": "摘要",
         "summary_en": "Summary", "description": "Description",
@@ -62,10 +63,33 @@ class BuildTests(unittest.TestCase):
             {"url": "https://github.com/other/repo"},
             {"created_at": "2026-02-30"}, {"track": "unknown"},
             {"stars": True}, {"stars": -1}, {"summary": ["not text"]},
+            {"category": "unknown"}, {"category": ""}, {"category": None},
         ]
         for changes in invalid:
             with self.subTest(changes=changes), self.assertRaises(build.BuildError):
                 build.prepare_catalog({"example/repo": record(**changes)})
+        # A missing category key is also rejected: every published record
+        # must carry its domain category.
+        source = {"example/repo": record()}
+        del source["example/repo"]["category"]
+        with self.assertRaises(build.BuildError):
+            build.prepare_catalog(source)
+
+    def test_categories_are_validated_and_reported_with_counts(self):
+        source = {
+            "example/one": record("example/one", category="coding"),
+            "example/two": record("example/two", category="other"),
+        }
+        payload, _ = build.prepare_catalog(source)
+        by_id = {item["id"]: item for item in payload["categories"]}
+        self.assertEqual(by_id["coding"]["count"], 1)
+        self.assertEqual(by_id["coding"]["name"], "AI 编程")
+        self.assertEqual(by_id["other"]["count"], 1)
+        self.assertEqual(len(payload["categories"]), len(build.CATEGORIES))
+        # Sorted by count descending.
+        counts = [item["count"] for item in payload["categories"]]
+        self.assertEqual(counts, sorted(counts, reverse=True))
+        self.assertEqual(payload["records"][0]["category"], "coding")
 
     def test_names_rejected_by_runtime_are_rejected_before_publication(self):
         # These previously passed the build and caused the entire browser

@@ -6,6 +6,7 @@
   var number = new Intl.NumberFormat('en-US');
   var input = document.getElementById('q');
   var sort = document.getElementById('sort');
+  var categorySelect = document.getElementById('category');
   var form = document.getElementById('search-form');
   var tabs = Array.from(document.querySelectorAll('.tabs button'));
   var results = document.getElementById('results');
@@ -14,7 +15,7 @@
   var reset = document.getElementById('reset-filters');
   var empty = document.getElementById('empty-state');
   var dialog = document.getElementById('repo-dialog');
-  var records, byName, updated, state;
+  var records, byName, updated, state, categoryNames;
   var pendingSearch = null;
   var composing = false;
   var opener = null;
@@ -150,7 +151,7 @@
   }
 
   function render(urlMode, anchor) {
-    var matches = core.searchRecords(records, state.q);
+    var matches = core.filterByCategory(core.searchRecords(records, state.q), state.category);
     var groups = core.groupRecords(core.sortRecords(matches, state.sort));
     var total = state.track === 'all' ? matches.length : groups[state.track].length;
     document.querySelector('[data-tab-count="all"]').textContent = number.format(matches.length);
@@ -177,13 +178,19 @@
       if (track === 'skills') jump.hidden = state.track !== 'all' || !groups.ai.length;
       makePagination(track, groups[track].length, page);
     });
-    var filtered = Boolean(state.q || state.track !== 'all');
+    var filtered = Boolean(state.q || state.track !== 'all' || state.category !== 'all');
     count.textContent = filtered ? '找到 ' + number.format(total) + ' 个仓库' : '共 ' + number.format(records.length) + ' 个仓库';
     reset.hidden = !filtered;
     clear.hidden = !input.value;
     empty.hidden = total !== 0;
     if (!total) {
-      document.getElementById('empty-context').textContent = state.q ? '没有找到与“' + state.q + '”匹配的' + (state.track === 'all' ? '仓库' : state.track === 'skills' ? ' Skills 仓库' : ' AI 仓库') + '。试试更短的关键词，或清除当前筛选。' : '当前分类没有匹配的仓库。清除筛选后可查看完整目录。';
+      var active = [];
+      if (state.q) active.push('关键词“' + state.q + '”');
+      if (state.track !== 'all') active.push(state.track === 'skills' ? 'Skills' : 'AI');
+      if (state.category !== 'all') active.push('“' + categoryName(state.category) + '”领域');
+      document.getElementById('empty-context').textContent = active.length
+        ? '没有找到符合' + active.join('、') + '的仓库。试试更短的关键词，或清除当前筛选。'
+        : '当前没有匹配的仓库。清除筛选后可查看完整目录。';
     }
     results.setAttribute('aria-busy', 'false');
     if (urlMode) updateUrl(urlMode, anchor);
@@ -192,6 +199,26 @@
   function syncControls() {
     input.value = state.q;
     sort.value = state.sort;
+    if (categorySelect.options.length) categorySelect.value = state.category;
+  }
+
+  function categoryName(id) {
+    return (categoryNames && categoryNames[id]) || id || '其他';
+  }
+
+  function buildCategoryOptions(list) {
+    categoryNames = {};
+    categorySelect.replaceChildren();
+    var all = element('option', '', '全部分类');
+    all.value = 'all';
+    categorySelect.append(all);
+    (Array.isArray(list) ? list : []).forEach(function (entry) {
+      if (!entry || typeof entry.id !== 'string') return;
+      categoryNames[entry.id] = entry.name || entry.id;
+      var option = element('option', '', (entry.name || entry.id) + ' (' + number.format(entry.count || 0) + ')');
+      option.value = entry.id;
+      categorySelect.append(option);
+    });
   }
 
   function resetPages() { state.pages = { skills: 1, ai: 1 }; }
@@ -209,6 +236,7 @@
     pendingSearch = null;
     state.q = '';
     state.track = 'all';
+    state.category = 'all';
     resetPages();
     syncControls();
     render('push', '');
@@ -229,7 +257,7 @@
     document.getElementById('dialog-summary-en').textContent = record.summary_en || '';
     var meta = document.getElementById('dialog-meta');
     meta.replaceChildren();
-    [['星数', number.format(record.stars)], ['星数采集', formatDate(record.last_refreshed)], ['创建日期', formatDate(record.created_at)], ['首次入库', formatDate(record.first_seen)]].forEach(function (pair) {
+    [['星数', number.format(record.stars)], ['领域分类', categoryName(record.category)], ['星数采集', formatDate(record.last_refreshed)], ['创建日期', formatDate(record.created_at)], ['首次入库', formatDate(record.first_seen)]].forEach(function (pair) {
       var item = element('div');
       item.append(element('dt', '', pair[0]), element('dd', '', pair[1]));
       meta.append(item);
@@ -256,11 +284,13 @@
     if (!records.length || records.some(function (record) { return !core.safeRepoUrl(record); })) throw new Error('Catalog data is invalid.');
     updated = payload.updated;
     byName = new Map(records.map(function (record) { return [record.name, record]; }));
+    buildCategoryOptions(payload.categories);
     state = core.readState(location.search);
     syncControls();
     render('replace');
     input.disabled = false;
     sort.disabled = false;
+    categorySelect.disabled = false;
     tabs.forEach(function (button) { button.disabled = false; });
   } catch (error) {
     showError(error);
@@ -294,6 +324,14 @@
     pendingSearch = null;
     state.q = input.value.trim();
     state.sort = sort.value;
+    resetPages();
+    render('push', '');
+  });
+  categorySelect.addEventListener('change', function () {
+    clearTimeout(pendingSearch);
+    pendingSearch = null;
+    state.q = input.value.trim();
+    state.category = categorySelect.value;
     resetPages();
     render('push', '');
   });
