@@ -39,6 +39,11 @@
     return normalizeText(value).normalize('NFKC').toLowerCase();
   }
 
+  function starValue(value) {
+    var number = Number(value);
+    return Number.isFinite(number) && number > 0 ? Math.min(Math.floor(number), Number.MAX_SAFE_INTEGER) : 0;
+  }
+
   function gainValue(value) {
     var number = Number(value);
     return Number.isFinite(number) ? Math.trunc(Math.min(Math.max(number, -Number.MAX_SAFE_INTEGER), Number.MAX_SAFE_INTEGER)) : 0;
@@ -173,7 +178,7 @@
     var q = queryValue(state.q);
     if (q) params.set('q', q);
     if (state.track === 'skills' || state.track === 'ai') params.set('track', state.track);
-    if (state.sort === 'seen' || state.sort === 'created') params.set('sort', state.sort);
+    if (state.sort === 'seen' || state.sort === 'created' || state.sort === 'gain7') params.set('sort', state.sort);
     if (state.category && state.category !== 'all' && CATEGORY_IDS.indexOf(state.category) !== -1) params.set('category', state.category);
     var pages = state.pages || {};
     var skillsPage = pageNumber(pages.skills);
