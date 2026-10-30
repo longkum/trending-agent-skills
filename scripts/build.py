@@ -105,8 +105,12 @@ def prepare_catalog(source: object) -> tuple[dict, dict]:
         stars = item.get("stars")
         if isinstance(stars, bool) or not isinstance(stars, int) or stars < 0:
             raise BuildError(f"{name}: stars must be a non-negative integer")
+        gain_7d = item.get("gain_7d", 0)
+        if isinstance(gain_7d, bool) or not isinstance(gain_7d, int):
+            raise BuildError(f"{name}: gain_7d must be an integer")
         record = {"name": name, "url": validate_repo_url(name, item.get("url")),
-                  "track": track, "stars": stars, "category": category}
+                  "track": track, "stars": stars, "category": category,
+                  "gain_7d": gain_7d}
         for field in DATE_FIELDS:
             value = item.get(field)
             if not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):

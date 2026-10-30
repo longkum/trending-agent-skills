@@ -9,7 +9,7 @@
   'use strict';
 
   var TRACKS = ['all', 'skills', 'ai'];
-  var SORTS = ['stars', 'seen', 'created'];
+  var SORTS = ['stars', 'seen', 'created', 'gain7'];
   // Domain category ids. Keep in sync with scripts/build.py CATEGORIES and
   // ~/workspace/goals/github-skills-ai/hidden_files/classify.py CATEGORIES.
   var CATEGORY_IDS = ['finance', 'security', 'media', 'design', 'mcp',
@@ -39,9 +39,9 @@
     return normalizeText(value).normalize('NFKC').toLowerCase();
   }
 
-  function starValue(value) {
+  function gainValue(value) {
     var number = Number(value);
-    return Number.isFinite(number) && number > 0 ? Math.min(Math.floor(number), Number.MAX_SAFE_INTEGER) : 0;
+    return Number.isFinite(number) ? Math.trunc(Math.min(Math.max(number, -Number.MAX_SAFE_INTEGER), Number.MAX_SAFE_INTEGER)) : 0;
   }
 
   function prepareRecords(raw) {
@@ -62,6 +62,7 @@
       return Object.assign({}, record, {
         stars: starValue(record.stars),
         category: category,
+        gain_7d: gainValue(record.gain_7d),
         summary: summary || description || english,
         summary_en: english,
         description: description,
@@ -102,7 +103,11 @@
   function sortRecords(records, sort) {
     var key = SORTS.indexOf(sort) === -1 ? 'stars' : sort;
     return records.slice().sort(function (a, b) {
-      if (key !== 'stars') {
+      if (key === 'gain7') {
+        var gl = gainValue(a.gain_7d);
+        var gr = gainValue(b.gain_7d);
+        if (gl !== gr) return gr - gl;
+      } else if (key !== 'stars') {
         var field = key === 'seen' ? 'first_seen' : 'created_at';
         var left = dateValue(a[field]);
         var right = dateValue(b[field]);

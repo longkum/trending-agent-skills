@@ -17,7 +17,7 @@ SPEC.loader.exec_module(build)
 def record(name="example/repo", **changes):
     value = {
         "url": "https://github.com/" + name, "track": "skills", "stars": 42,
-        "category": "coding",
+        "category": "coding", "gain_7d": 0,
         "created_at": "2026-01-01", "first_seen": "2026-10-27",
         "last_refreshed": "2026-10-28", "summary": "摘要",
         "summary_en": "Summary", "description": "Description",
@@ -64,6 +64,7 @@ class BuildTests(unittest.TestCase):
             {"created_at": "2026-02-30"}, {"track": "unknown"},
             {"stars": True}, {"stars": -1}, {"summary": ["not text"]},
             {"category": "unknown"}, {"category": ""}, {"category": None},
+            {"gain_7d": "many"}, {"gain_7d": True}, {"gain_7d": 1.5},
         ]
         for changes in invalid:
             with self.subTest(changes=changes), self.assertRaises(build.BuildError):
@@ -91,6 +92,20 @@ class BuildTests(unittest.TestCase):
         counts = [item["count"] for item in payload["categories"][:-1]]
         self.assertEqual(counts, sorted(counts, reverse=True))
         self.assertEqual(payload["records"][0]["category"], "coding")
+
+    def test_gain_7d_is_carried_and_defaults_to_zero(self):
+        payload, _ = build.prepare_catalog({
+            "example/one": record("example/one", gain_7d=150),
+            "example/two": record("example/two", gain_7d=-3),
+        })
+        by_name = {item["name"]: item for item in payload["records"]}
+        self.assertEqual(by_name["example/one"]["gain_7d"], 150)
+        self.assertEqual(by_name["example/two"]["gain_7d"], -3)
+        # Missing key defaults to 0 instead of failing.
+        source = {"example/three": record("example/three")}
+        del source["example/three"]["gain_7d"]
+        payload, _ = build.prepare_catalog(source)
+        self.assertEqual(payload["records"][0]["gain_7d"], 0)
 
     def test_names_rejected_by_runtime_are_rejected_before_publication(self):
         # These previously passed the build and caused the entire browser

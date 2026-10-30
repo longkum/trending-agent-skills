@@ -6,7 +6,7 @@ const Core = require('../src/catalog-core.js');
 
 const fixture = (name, overrides = {}) => ({
   name, url: `https://github.com/${name}`, track: 'skills', stars: 10,
-  category: 'coding',
+  category: 'coding', gain_7d: 0,
   summary: '代码审查与设计', summary_en: 'Code review and design', description: '',
   created_at: '2026-01-01', first_seen: '2026-10-26', last_refreshed: '2026-10-28',
   ...overrides
@@ -93,8 +93,23 @@ test('category filtering keeps unknown values in other and rejects bad URL value
   assert.notEqual(Core.filterByCategory(rows, 'design'), rows);
 });
 
+test('gain7 sorting ranks by 7-day growth then stars then name', () => {
+  const rows = Core.prepareRecords([
+    fixture('org/low', { stars: 500, gain_7d: 10 }),
+    fixture('org/high', { stars: 100, gain_7d: 900 }),
+    fixture('org/tie-b', { stars: 50, gain_7d: 900 }),
+    fixture('org/tie-a', { stars: 50, gain_7d: 900 }),
+    fixture('org/zero', { stars: 999, gain_7d: 0 }),
+    fixture('org/neg', { stars: 10, gain_7d: -5 }),
+    fixture('org/nan', { stars: 10, gain_7d: 'bogus' }),
+  ]);
+  assert.deepEqual(Core.sortRecords(rows, 'gain7').map(r => r.name),
+    ['org/high', 'org/tie-a', 'org/tie-b', 'org/low', 'org/zero', 'org/nan', 'org/neg']);
+  assert.equal(Core.prepareRecords([fixture('org/x', {})])[0].gain_7d, 0);
+});
+
 test('URL state roundtrips and rejects invalid categories, dates, pages and oversized queries', () => {
-  const state = { q: '代码 review & design', track: 'ai', sort: 'seen', category: 'media', pages: { skills: 2, ai: 3 } };
+  const state = { q: '代码 review & design', track: 'ai', sort: 'gain7', category: 'media', pages: { skills: 2, ai: 3 } };
   assert.deepEqual(Core.readState(Core.stateQuery(state)), state);
   assert.equal(Core.stateQuery(Core.readState('?utm_source=test')), '');
   assert.deepEqual(Core.readState('?track=bad&sort=bad&category=bad&skillsPage=-1&aiPage=Infinity'), {
@@ -116,10 +131,11 @@ test('the entire real catalog retains every repository and validates all outboun
   assert.equal(records.length, Object.keys(original).length);
   assert.equal(groups.skills.length + groups.ai.length, records.length);
   assert.equal(records.filter(row => Core.safeRepoUrl(row)).length, records.length);
+  assert.ok(records.every(row => Number.isInteger(row.gain_7d)));
   assert.ok(records.every(row => !row.summary.includes('\u00b7')));
   assert.equal(Core.searchRecords(records, 'morluto/rea').length, 1);
   assert.ok(Core.searchRecords(records, '需求').length > 0);
-  for (const sort of ['stars', 'seen', 'created']) {
+  for (const sort of ['stars', 'seen', 'created', 'gain7']) {
     const sorted = Core.sortRecords(records, sort);
     assert.equal(sorted.length, records.length);
     assert.equal(new Set(sorted.map(row => row.name)).size, records.length);

@@ -108,6 +108,12 @@
     row.append(main);
     var stars = element('div', 'row-stars');
     stars.append(element('span', 'mobile-label', '星数'), element('span', 'stars-value', number.format(record.stars)));
+    if (record.gain_7d > 0) {
+      var gain = element('span', 'stars-gain', '+' + number.format(record.gain_7d));
+      gain.setAttribute('aria-label', '近 7 天新增 ' + number.format(record.gain_7d) + ' 星');
+      gain.title = '近 7 天涨星';
+      stars.append(gain);
+    }
     var refreshed = element('time', 'stars-refreshed', formatDate(record.last_refreshed).slice(5) + ' 采集');
     if (record.last_refreshed) refreshed.dateTime = record.last_refreshed;
     refreshed.setAttribute('aria-label', '星数采集日期 ' + formatDate(record.last_refreshed));
@@ -257,7 +263,7 @@
     document.getElementById('dialog-summary-en').textContent = record.summary_en || '';
     var meta = document.getElementById('dialog-meta');
     meta.replaceChildren();
-    [['星数', number.format(record.stars)], ['领域分类', categoryName(record.category)], ['星数采集', formatDate(record.last_refreshed)], ['创建日期', formatDate(record.created_at)], ['首次入库', formatDate(record.first_seen)]].forEach(function (pair) {
+    [['星数', number.format(record.stars)], ['7 天涨星', record.gain_7d > 0 ? '+' + number.format(record.gain_7d) : '—'], ['领域分类', categoryName(record.category)], ['星数采集', formatDate(record.last_refreshed)], ['创建日期', formatDate(record.created_at)], ['首次入库', formatDate(record.first_seen)]].forEach(function (pair) {
       var item = element('div');
       item.append(element('dt', '', pair[0]), element('dd', '', pair[1]));
       meta.append(item);
