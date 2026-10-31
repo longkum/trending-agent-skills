@@ -11,6 +11,7 @@
 .growth-filters-row { display: flex; flex-wrap: wrap; gap: 12px; }
 .growth-filters-row label { display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: var(--text-small); }
 .growth-filters-row label:first-child { flex: 1 1 240px; }
+.growth-filters-row label > span { flex: none; white-space: nowrap; }
 .growth-filters-row input, .growth-filters-row select { min-height: 40px; width: 100%; min-width: 0; background: var(--subtle); border: var(--hairline) solid var(--control-line); border-radius: var(--radius); padding: 8px 11px; color: var(--text); font-size: var(--text-small); }
 .growth-filters-row select { min-width: 112px; }
 .growth-status { font-size: var(--text-small); color: var(--muted); padding: 14px 0; min-height: 40px; }
@@ -60,7 +61,7 @@
 }
 @media (max-width: 620px) {
   .growth { padding-top: 22px; margin-bottom: 32px; }
-  .growth-filters-row label { flex: 1 1 100%; }
+  .growth-filters-row label { flex: 1 1 100%; flex-direction: column; align-items: stretch; gap: 4px; }
   .growth-filters-row label:first-child { flex-basis: 100%; }
   .growth-filters-row label:not(:first-child) { flex-basis: calc(50% - 6px); }
   .growth-headings { display: none; }
@@ -70,7 +71,9 @@
   .growth-delta { grid-column: 2; grid-row: 2; text-align: left; }
   .growth-rate { grid-column: 2; grid-row: 3; text-align: left; }
   .growth-rate::before { content: '增长率 '; color: var(--muted); }
+  .growth[data-metric="activity"] .growth-rate::before { content: '新增占比 '; }
   .growth-spark { display: none; }
-  .growth-windows button { flex: 1 1 auto; }
+  .growth-windows { justify-content: center; }
+  .growth-windows button { flex: 0 0 calc((100% - 12px) / 3); }
 }
 @media (prefers-reduced-motion: reduce) { .growth *, .growth *::before, .growth *::after { transition: none !important; animation: none !important; } }

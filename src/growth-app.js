@@ -173,6 +173,7 @@
     var total = ranking.length;
     var column = section.querySelector('.growth-headings span:nth-child(4)');
     if (column) column.textContent = usingArchive ? '新增占比' : '增长率';
+    section.dataset.metric = usingArchive ? 'activity' : 'net';
     if (!total) {
       var scope = activitySource.coverage || {};
       status.textContent = '当前窗口尚无可比较数据。官方历史采集覆盖 ' + formatter.format(scope.sampled || 0) +
