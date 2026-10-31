@@ -1,0 +1,53 @@
+name: Daily GitHub Star history
+
+on:
+  schedule:
+    # A stable UTC hour makes consecutive measurements comparable.
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trending-star-history
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Fetch real Star counts and persist today's UTC snapshot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/collect_stars.py
+      - name: Compile growth metrics and regenerate static catalog
+        run: |
+          python3 scripts/growth_metrics.py
+          python3 scripts/build.py
+      - name: Regression tests
+        run: |
+          python3 -m unittest discover -s tests -p 'test*.py' -v
+          node --test tests/*.test.cjs
+          python3 scripts/build.py --check
+      - name: Commit daily data and rebuilt site
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/star-history data/star-growth.json index.html
+          if git diff --cached --quiet; then
+            echo 'No changes to publish'
+          else
+            git commit -m 'data: update verified GitHub Star history'
+            git push
+          fi
