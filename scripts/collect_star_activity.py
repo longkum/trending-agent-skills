@@ -63,9 +63,15 @@ def normalize_buckets(buckets, collected_at: datetime, created_at: str):
         if type(total) is not int or total != sum(values):
             raise HistoryError("Week total differs from summed days")
         week_start = datetime.fromtimestamp(timestamp, timezone.utc).date()
-        if week_start.weekday() != 6:
-            # GitHub calendar weeks start on Sunday; do not silently shift.
-            raise HistoryError("Non-Sunday start for calendar week")
+        # GitHub documents that week/day boundaries may not align with UTC.
+        # A local Sunday bucket can fall on UTC Saturday or Monday; normalize
+        # only that one-day timezone offset, not an arbitrary malformed week.
+        if week_start.weekday() == 5:
+            week_start += timedelta(days=1)
+        elif week_start.weekday() == 0:
+            week_start -= timedelta(days=1)
+        elif week_start.weekday() != 6:
+            raise HistoryError("Week start is not close to Sunday")
         for i, count in enumerate(values):
             d = week_start + timedelta(days=i)
             if d in daily and daily[d] != count:
