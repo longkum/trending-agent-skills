@@ -8,8 +8,8 @@
         </div>
         <form id="growth-form" class="growth-filters" role="search" aria-label="涨星榜搜索和筛选">
           <div class="growth-windows" role="group" aria-label="涨星榜统计窗口">
-            <button type="button" data-growth-window="1" aria-pressed="true">24 小时</button>
-            <button type="button" data-growth-window="7" aria-pressed="false">7 天涨星</button>
+            <button type="button" data-growth-window="1" aria-pressed="false">24 小时</button>
+            <button type="button" data-growth-window="7" aria-pressed="true">7 天涨星</button>
             <button type="button" data-growth-window="30" aria-pressed="false">30 天涨星</button>
             <button type="button" data-growth-window="rate7" aria-pressed="false">7 天增长率</button>
             <button type="button" data-growth-window="rate30" aria-pressed="false">30 天增长率</button>
@@ -24,5 +24,5 @@
         <div class="growth-headings" aria-hidden="true"><span>排名</span><span>项目</span><span>统计窗口新增</span><span>增长率</span><span>趋势</span></div>
         <div class="growth-list" id="growth-list" role="list" aria-label="涨星排行榜"></div>
         <nav class="growth-pages" id="growth-pages" aria-label="涨星榜分页" hidden></nav>
-        <p class="growth-method">按实际 UTC 日快照计算净变化，历史不足不参与排名。增长率榜仅统计窗口起点至少 10 星的项目。仅代表本站收录项目，不是 GitHub 全站榜单。</p>
+        <p class="growth-method">「7 天涨星 / 7 天增长率」在历史不足时展示现有目录的 gain_7d 参考值，仅收录最近 3 个自然日更新且有明确非零变化的项目；该参考值未经本站日快照独立核验，不用于绘制历史曲线。正式排行榜按实际 UTC 日快照计算净变化，历史不足不参与排名。增长率榜要求窗口起点至少 10 星；仅代表本站收录项目，不是 GitHub 全站榜单。</p>
       </section>
