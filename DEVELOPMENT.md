@@ -28,6 +28,9 @@ python3 -m http.server 8000
 | `data/star-growth.json` | 前端读取的历史和涨星指标 |
 | `src/growth-core.js` / `src/growth-app.js` | 排行榜、参考榜、趋势图逻辑 |
 | `.github/workflows/star-growth.yml` | 每日采集并写入仓库 |
+| `scripts/collect_star_activity.py` | 从 GitHub 官方 Star History REST API 读取每个项目近 30 天仍有效的新 Star 日期分布 |
+| `data/star-activity.json` | 官方历史新增缓存，按批次更新；与净涨星快照严格分开 |
+| `.github/workflows/star-activity.yml` | 每日多批次自动补齐所有收录仓库的官方历史新增，限流可控 |
 
 修改 `src` 或数据后应重新运行生成命令。不要只手改 `index.html`，否则下次生成会覆盖修改。
 
@@ -70,3 +73,15 @@ Python 检查覆盖全部数据保留、摘要精简不改变含义、非法地�
 - 由 `GITHUB_TOKEN` 提交的日快照可能不会自动触发 Pages 构建，因此前端优先读取公开 GitHub 主分支中最新的 `data/star-growth.json`，访问异常时回退到 Pages 本地文件。需要重新发布嵌入目录和静态统计时，仍要确保触发 GitHub Pages 部署。
 - 外部 `Daily update` 任务仍需维护者把旧模板发布流程改为更新 `data/repos.json` 后运行 `python3 scripts/growth_metrics.py`、`python3 scripts/build.py`、测试和发布，避免覆盖本次图鉴新版。
 
+
+## 官方历史新增榜：为什么可以更早显示 1/7/30 日数据
+
+GitHub 在 2026-09 提供隐私保护的 `GET /repos/{owner}/{repo}/stargazers/history`，每个响应最多返回 30 周、每周 7 个日期桶。我们仅请求最近 6 周数据并提取最近 30 个完整统计日，不下载 Stargazer 身份数据。官方端点文档：https://docs.github.com/en/rest/activity/starring#get-repository-star-history
+
+**务必区分两种含义：**
+
+- `data/star-growth.json` 的日快照反映 Star 总数的净变化（增加减去取消）；日期跨度足够时优先用于正式榜和累计曲线。
+- `data/star-activity.json` 的官方历史新增按 Star 的创建日期统计**目前仍然有效**的 Star，不包含已经取消的 Star 历史事件。因此这些数值不是历史净变化；其占比以最近采集的总星数减去窗口内仍有效新增数作为分母，只是「新增占比」，并非净增长率。
+- 24 小时窗口使用 GitHub 上一个完整的日期桶；官方文档指出日期和周的边界**不保证与 UTC 完全对齐**。前端标注来源和截至日期，不把此数据当成精确滚动 24 小时。
+- 仓库首次引入时，该工作流按每批最多 650 个项目请求官方 API，一天运行 4 批；每次先处理尚未采集的项目，然后刷新最久未更新者。数据可能会逐步覆盖，而非合并后立即全部完成。由于 GitHub Actions `GITHUB_TOKEN` 更新文件不保证触发 Pages 构建，前端优先从公开主分支实时加载 JSON，失败再回退到 Pages 静态副本。
+- 仍缺失的仓库不会补零；排行仅比较有有效窗口数据且近期更新的条目，显示已覆盖的项目数。原 `gain_7d` 为低优先级、清晰标注的参考来源。
