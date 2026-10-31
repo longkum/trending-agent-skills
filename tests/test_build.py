@@ -134,7 +134,7 @@ class BuildTests(unittest.TestCase):
             (root / "src" / "index.template.html").write_text(
                 '<style>{{STYLES}}</style><p>{{TOTAL}}</p><script type="application/json">{{DATA}}</script><script>{{SCRIPTS}}</script>',
                 encoding="utf-8")
-            for filename in ("radix.css", "styles.css", "catalog-core.js", "app.js"):
+            for filename in ("radix.css", "styles.css", "growth.css", "catalog-core.js", "app.js", "growth-core.js", "growth-app.js"):
                 (root / "src" / filename).write_text("", encoding="utf-8")
             html, count = build.render(root)
             self.assertEqual(count, 1)

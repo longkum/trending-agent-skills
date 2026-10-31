@@ -21,6 +21,7 @@
         <span>trending-agent-skills</span>
       </a>
       <div class="nav-links">
+        <a href="#growth">涨星榜</a>
         <a href="https://github.com/longkum/trending-agent-skills" target="_blank" rel="noopener noreferrer">项目源码 <span aria-hidden="true">↗</span></a>
         <a href="data/repos.json" target="_blank" rel="noopener noreferrer">原始数据 <span aria-hidden="true">↗</span></a>
         <button class="theme-button" id="theme-toggle" type="button" aria-label="切换深色模式" aria-pressed="false" hidden>
@@ -44,6 +45,35 @@
           </dl>
         </div>
       </header>
+
+      <section class="growth" id="growth" aria-labelledby="growth-title" tabindex="-1">
+        <div class="growth-heading">
+          <div>
+            <h2 id="growth-title">涨星榜</h2>
+            <p class="growth-description">发现本站收录项目中近期真正上涨的仓库</p>
+          </div>
+          <span class="growth-asof" id="growth-asof">正在检查历史快照</span>
+        </div>
+        <form id="growth-form" class="growth-filters" role="search" aria-label="涨星榜搜索和筛选">
+          <div class="growth-windows" role="group" aria-label="涨星榜统计窗口">
+            <button type="button" data-growth-window="1" aria-pressed="true">24 小时</button>
+            <button type="button" data-growth-window="7" aria-pressed="false">7 天涨星</button>
+            <button type="button" data-growth-window="30" aria-pressed="false">30 天涨星</button>
+            <button type="button" data-growth-window="rate7" aria-pressed="false">7 天增长率</button>
+            <button type="button" data-growth-window="rate30" aria-pressed="false">30 天增长率</button>
+          </div>
+          <div class="growth-filters-row">
+            <label><span>检索</span><input id="growth-query" type="search" placeholder="仓库名称或用途" maxlength="200"></label>
+            <label><span>分类</span><select id="growth-track"><option value="all">全部项目</option><option value="skills">Skills</option><option value="ai">AI</option></select></label>
+            <label><span>领域</span><select id="growth-category"><option value="all">全部领域</option></select></label>
+          </div>
+        </form>
+        <div class="growth-status" id="growth-status" role="status" aria-live="polite">正在加载涨星数据…</div>
+        <div class="growth-headings" aria-hidden="true"><span>排名</span><span>项目</span><span>统计窗口新增</span><span>增长率</span><span>趋势</span></div>
+        <div class="growth-list" id="growth-list" role="list" aria-label="涨星排行榜"></div>
+        <nav class="growth-pages" id="growth-pages" aria-label="涨星榜分页" hidden></nav>
+        <p class="growth-method">按实际 UTC 日快照计算净变化，历史不足不参与排名。增长率榜仅统计窗口起点至少 10 星的项目。仅代表本站收录项目，不是 GitHub 全站榜单。</p>
+      </section>
 
       <section class="catalog" id="catalog" aria-label="仓库目录" tabindex="-1">
         <form class="filter" id="search-form" role="search">
