@@ -188,7 +188,7 @@ def render(root: Path = ROOT) -> tuple[str, int]:
     styles = "\n\n".join((source / filename).read_text(encoding="utf-8")
                          for filename in ("radix.css", "styles.css", "growth.css"))
     scripts = "\n;\n".join((source / filename).read_text(encoding="utf-8")
-                          for filename in ("catalog-core.js", "app.js", "growth-core.js", "growth-app.js"))
+                          for filename in ("catalog-core.js", "app.js", "growth-core.js", "star-activity-core.js", "growth-app.js"))
     if re.search(r"</style\b", styles, re.I) or re.search(r"</script\b", scripts, re.I):
         raise BuildError("Inline source contains an HTML closing style/script tag")
     values.update(STYLES=styles, SCRIPTS=scripts, DATA=inline_json(payload))
