@@ -39,4 +39,5 @@ jobs:
         with:
           name: star-growth-browser-screenshots
           path: .artifacts/*.png
-          if-no-files-found: warn
+          include-hidden-files: true
+          if-no-files-found: error
