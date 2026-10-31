@@ -24,5 +24,11 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test*.py' -v
       - name: Test JavaScript catalog and ranking logic
         run: node --test tests/*.test.cjs
+      - name: Check client JavaScript syntax
+        run: |
+          node --check src/growth-app.js
+          node --check src/star-activity-core.js
+      - name: Check official Star API collector syntax
+        run: python3 -m py_compile scripts/collect_star_activity.py
       - name: Verify generated static page is up to date
         run: python3 scripts/build.py --check

@@ -1,0 +1,47 @@
+name: Official GitHub Star history
+
+on:
+  schedule:
+    # Four bounded batches each day; rotate all catalog repositories.
+    - cron: '12 0,6,12,18 * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/star-activity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trending-official-star-activity
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Collect public Star history in an API-budgeted batch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/collect_star_activity.py --limit 650 --workers 5
+      - name: Run history calculation tests
+        run: python3 -m unittest discover -s tests -p 'test_star_activity.py' -v
+      - name: Commit real historical activity (no fabricated snapshots)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/star-activity.json
+          if git diff --cached --quiet; then
+            echo 'No new Star history data'
+          else
+            git commit -m 'data: update GitHub official Star history cache'
+            git push
+          fi

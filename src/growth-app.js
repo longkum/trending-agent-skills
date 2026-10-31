@@ -2,6 +2,7 @@
   'use strict';
   var core = window.GrowthCore;
   var catalogCore = window.CatalogCore;
+  var activityCore = window.StarActivityCore;
   var section = document.getElementById('growth');
   if (!core || !catalogCore || !section) return;
   var catalog;
@@ -13,6 +14,8 @@
   var state = {window: '7', track: 'all', category: 'all', query: '', page: 1};
   var source = {schema: 1, as_of: null, snapshot_days: 0, records: {}};
   var ready = false;
+  var activityReady = false;
+  var activitySource = {schema:1, records:{}, coverage:{total:0,sampled:0,fresh:0}};
   var perPage = 12;
   var list = document.getElementById('growth-list');
   var status = document.getElementById('growth-status');
@@ -115,16 +118,24 @@
     else { link.removeAttribute('href'); }
     identity.append(link);
     identity.append(make('span','growth-summary',item.catalog.summary || '暂无简介'));
-    identity.append(make('small','', (item.catalog.track === 'skills' ? 'Skills' : 'AI') + '  |  ' + formatter.format(item.growth.stars) + ' 星' + (item.reported ? '  |  目录参考值 · ' + item.refreshed + ' 更新' : '')));
+    var metadata = (item.catalog.track === 'skills' ? 'Skills' : 'AI') + '  |  ' + formatter.format(item.growth.stars) + ' 星';
+    if (item.activity) metadata += '  |  官方历史新增  |  截至 ' + item.windowEnd;
+    else if (item.reported) metadata += '  |  目录参考  |  更新 ' + item.refreshed;
+    identity.append(make('small','', metadata));
     row.append(identity);
     var delta = make('span','growth-delta',signed(item.metric.delta));
     if (item.metric.delta < 0) delta.classList.add('negative');
-    delta.setAttribute('aria-label','窗口净增 ' + signed(item.metric.delta) + ' 星');
-    if (item.reported) delta.title = '数据源：目录 gain_7d 字段，尚未经本站日快照独立核验';
+    delta.setAttribute('aria-label', (item.activity ? '当前仍有效的新增 ' : '窗口净增 ') + signed(item.metric.delta) + ' 星');
+    if (item.activity) delta.title = 'GitHub 官方 Star History API：按创建日期统计当前仍有效的 Star，不含取消 Star 事件';
+    else if (item.reported) delta.title = '数据源：目录 gain_7d 字段，尚未经本站日快照独立核验';
     row.append(delta, make('span','growth-rate',percentage(item.metric.rate)));
     var spark = make('div','growth-spark');
-    var svg = svgChart(item.growth.history, state.window.indexOf('30') >= 0 ? 30 : 7, 120, 36);
-    if (svg) spark.append(svg);
+    var chartData = item.activity ? item.growth.activity_history : item.growth.history;
+    var svg = svgChart(chartData, state.window.indexOf('30') >= 0 ? 30 : 7, 120, 36);
+    if (svg) {
+      if (item.activity) svg.setAttribute('aria-label', 'GitHub 历史新增 Star 每日变化，非净涨星');
+      spark.append(svg);
+    }
     else if (item.reported) spark.append(make('span','growth-spark-empty','待积累历史'));
     row.append(spark);
     return row;
@@ -147,16 +158,25 @@
     asOf.textContent = '采集时间：' + activeDate() +
       (coverage && Number.isInteger(coverage.total) ? '  |  覆盖 ' + formatter.format(coverage.collected) + ' / ' + formatter.format(coverage.total) : '');
     list.replaceChildren();
-    if (!ready) { status.textContent = '正在加载可靠的 Star 历史快照…'; pages.hidden = true; return; }
+    if (!ready && !activityReady) { status.textContent = '正在加载 Star 历史数据…'; pages.hidden = true; return; }
     var ranking = core.rank(rows, source.records, state.window, state);
+    var usingArchive = false;
+    if (!ranking.length && activityReady && activityCore) {
+      ranking = activityCore.rank(rows, activitySource.records, state.window, state, new Date().toISOString().slice(0, 10), 2);
+      usingArchive = ranking.length > 0;
+    }
     var usingReported = false;
     if (!ranking.length && (state.window === '7' || state.window === 'rate7')) {
       ranking = core.reportedRank(rows, state.window, state, catalog.updated, 2);
       usingReported = ranking.length > 0;
     }
     var total = ranking.length;
+    var column = section.querySelector('.growth-headings span:nth-child(4)');
+    if (column) column.textContent = usingArchive ? '新增占比' : '增长率';
     if (!total) {
-      status.textContent = '当前没有可计算的' + (state.window === '1' ? '24 小时' : state.window.indexOf('30') >= 0 ? '30 天' : '7 天') + '真实涨星快照。历史采集已配置，正式榜单需要在对应日期积累可比较的数据。可先查看「7 天涨星」参考榜。';
+      var scope = activitySource.coverage || {};
+      status.textContent = '当前窗口尚无可比较数据。官方历史采集覆盖 ' + formatter.format(scope.sampled || 0) +
+        ' / ' + formatter.format(scope.total || rows.length) + ' 个项目，可切换 7 天参考榜；真实净变化会按天积累。';
       pages.hidden = true; return;
     }
     var totalPages = Math.max(1, Math.ceil(total / perPage));
@@ -165,10 +185,19 @@
     var fragment = document.createDocumentFragment();
     ranking.slice(start,start + perPage).forEach(function (row,index) { fragment.append(drawRow(row,start+index+1)); });
     list.append(fragment);
-    status.textContent = usingReported
-      ? '参考榜 · ' + formatter.format(total) + ' 项：依据现有目录 gain_7d 字段，限定最近 3 个自然日更新；未由本站连续历史快照复核，勿与正式历史榜混淆。'
-      : '正式历史榜 · ' + formatter.format(total) + ' 个项目具备完整的统计窗口数据；以 ' + activeDate() + ' 为截止时间';
-    if (usingReported) asOf.textContent = '参考数据更新：' + catalog.updated + '  |  真实日快照 ' + (source.snapshot_days || 0) + ' 天';
+    if (usingArchive) {
+      var archiveCoverage = activitySource.coverage || {};
+      status.textContent = '官方历史新增：' + formatter.format(total) + ' 个项目。统计当前仍有效、在相应日期新增的 Star；不代表净涨星。';
+      asOf.textContent = '历史覆盖 ' + formatter.format(archiveCoverage.sampled || 0) + '/' +
+        formatter.format(archiveCoverage.total || rows.length) + '  |  最近采集 ' +
+        String(activitySource.updated_at || '').slice(0, 16).replace('T',' ') + ' UTC';
+    } else if (usingReported) {
+      status.textContent = '目录参考：' + formatter.format(total) + ' 项，来自原有 gain_7d 字段，尚未经独立历史快照复核。';
+      asOf.textContent = '目录更新 ' + catalog.updated + '  |  实测快照 ' + (source.snapshot_days || 0) + ' 天';
+    } else {
+      status.textContent = '实测净涨星：' + formatter.format(total) + ' 个项目具备完整窗口数据。';
+      asOf.textContent = '实测截至 ' + activeDate();
+    }
     drawPagination(totalPages,total);
   }
   (catalog.categories || []).forEach(function (cat) {
@@ -211,7 +240,20 @@
   function updateDetail(days) {
     graphic.replaceChildren();
     var current = activeDetailName && source.records[activeDetailName];
-    if (!current || !Array.isArray(current.history)) {
+    if (!current || !Array.isArray(current.history) || current.history.length < 2) {
+      var activity = activeDetailName && activitySource.records[activeDetailName];
+      if (activity && Array.isArray(activity.days) && activity.days.length >= 2) {
+        var fromActivity = activity.days;
+        var spark = svgChart(fromActivity, days && days < 30 ? days : 30, 600, 142);
+        if (spark) {
+          spark.setAttribute('aria-label', 'GitHub 官方历史每日新增且目前仍有效的 Star');
+          graphic.append(spark);
+        }
+        var shown = core.points(fromActivity, days && days < 30 ? days : 30);
+        caption.textContent = 'GitHub 官方日新增数据：' + shown[0][0] + ' 至 ' + shown[shown.length-1][0] +
+          '。仅统计当前仍有效的 Star，不代表历史净涨星。';
+        return;
+      }
       var reported = activeDetailName && byName.get(activeDetailName);
       caption.textContent = reported && reported.gain_7d
         ? '目录参考：近 7 天变化 ' + signed(reported.gain_7d) + ' 星（' + reported.last_refreshed + ' 更新，未经日快照核验）。真实历史趋势仍在积累。'
@@ -253,7 +295,24 @@
     .catch(function (error) {
       ready=true;
       render();
-      asOf.textContent = '历史快照不可用 · 目录参考数据截至 ' + catalog.updated;
+      asOf.textContent = '历史快照不可用，目录参考数据截至 ' + catalog.updated;
       console.warn('Growth data unavailable:',error.message);
+    });
+  // Official daily history is distinct from observed net changes. The REST
+  // endpoint groups currently active Stars by creation date; unstars are not
+  // recoverable and must never be modeled as a zero-delta event.
+  fetchGrowth('https://raw.githubusercontent.com/longkum/trending-agent-skills/main/data/star-activity.json?at=' + Date.now())
+    .catch(function () { return fetchGrowth('data/star-activity.json'); })
+    .then(function (payload) {
+      if (!payload || payload.schema !== 1 || payload.source !== 'github-rest-star-history' ||
+          !payload.records || typeof payload.records !== 'object' || Array.isArray(payload.records)) {
+        throw new Error('Invalid official Star history format');
+      }
+      activitySource = payload; activityReady = true; render();
+      if (activeDetailName) updateDetail(30);
+    })
+    .catch(function (error) {
+      activityReady = true; render();
+      console.warn('Official Star history unavailable:', error.message);
     });
 })();

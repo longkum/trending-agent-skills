@@ -50,13 +50,13 @@
         <div class="growth-heading">
           <div>
             <h2 id="growth-title">涨星榜</h2>
-            <p class="growth-description">发现本站收录项目中近期真正上涨的仓库</p>
+            <p class="growth-description">按真实净变化与 GitHub 官方历史新增发现活跃项目</p>
           </div>
           <span class="growth-asof" id="growth-asof">正在检查历史快照</span>
         </div>
         <form id="growth-form" class="growth-filters" role="search" aria-label="涨星榜搜索和筛选">
           <div class="growth-windows" role="group" aria-label="涨星榜统计窗口">
-            <button type="button" data-growth-window="1" aria-pressed="false">24 小时</button>
+            <button type="button" data-growth-window="1" aria-pressed="false" title="官方历史数据统计最近一个完整日，非滚动 24 小时">24 小时</button>
             <button type="button" data-growth-window="7" aria-pressed="true">7 天涨星</button>
             <button type="button" data-growth-window="30" aria-pressed="false">30 天涨星</button>
             <button type="button" data-growth-window="rate7" aria-pressed="false">7 天增长率</button>
@@ -72,7 +72,15 @@
         <div class="growth-headings" aria-hidden="true"><span>排名</span><span>项目</span><span>统计窗口新增</span><span>增长率</span><span>趋势</span></div>
         <div class="growth-list" id="growth-list" role="list" aria-label="涨星排行榜"></div>
         <nav class="growth-pages" id="growth-pages" aria-label="涨星榜分页" hidden></nav>
-        <p class="growth-method">「7 天涨星 / 7 天增长率」在历史不足时展示现有目录的 gain_7d 参考值，仅收录最近 3 个自然日更新且有明确非零变化的项目；该参考值未经本站日快照独立核验，不用于绘制历史曲线。正式排行榜按实际 UTC 日快照计算净变化，历史不足不参与排名。增长率榜要求窗口起点至少 10 星；仅代表本站收录项目，不是 GitHub 全站榜单。</p>
+        <details class="growth-method">
+          <summary>数据口径与覆盖范围</summary>
+          <div>
+            <p><strong>实测净涨星：</strong>本站逐日保存 GitHub Star 总数，在可比较的完整窗口内相减，包含取消 Star 的净变化。</p>
+            <p><strong>官方历史新增：</strong>GitHub Star History API 统计按创建日期归类且目前仍有效的 Star，不含历史取消 Star 事件。24 小时视图使用最近一个完整统计日，7 天与 30 天按完整日期分桶累计，日期边界不保证严格对齐 UTC。增长率栏改称「新增占比」，并非净增长率。</p>
+            <p><strong>目录参考：</strong>仅在历史源未覆盖 7 天窗口时使用原 `gain_7d` 字段。该值未经独立快照复核，不用于历史曲线。</p>
+            <p>增长率和新增占比排名均要求窗口基数至少 10 星。榜单仅覆盖本站收录仓库，缺失历史不会补零。<a href="https://docs.github.com/en/rest/activity/starring#get-repository-star-history" target="_blank" rel="noopener noreferrer">GitHub 官方统计说明</a></p>
+          </div>
+        </details>
       </section>
 
       <section class="catalog" id="catalog" aria-label="仓库目录" tabindex="-1">
