@@ -26,6 +26,7 @@
 .growth-name:hover { color: var(--accent-text); }
 .growth-summary { display: block; color: var(--muted); font-size: var(--text-small); line-height: 1.5; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .growth-identity small { display: block; color: var(--muted); font-size: var(--text-small); line-height: 1.4; }
+.growth-identity .growth-meta { display: flex; flex-wrap: wrap; column-gap: 12px; row-gap: 2px; }
 .growth-delta, .growth-rate { text-align: right; font-variant-numeric: tabular-nums; font-size: var(--text-body); }
 .growth-delta { color: var(--accent-text); font-weight: 600; }
 .growth-delta.negative { color: var(--error); }
@@ -70,8 +71,9 @@
   .growth-identity { grid-column: 2; grid-row: 1; }
   .growth-delta { grid-column: 2; grid-row: 2; text-align: left; }
   .growth-rate { grid-column: 2; grid-row: 3; text-align: left; }
-  .growth-rate::before { content: '增长率 '; color: var(--muted); }
+  .growth-rate::before { content: '净增长率 '; color: var(--muted); }
   .growth[data-metric="activity"] .growth-rate::before { content: '新增占比 '; }
+  .growth[data-metric="reference"] .growth-rate::before { content: '参考占比 '; }
   .growth-spark { display: none; }
   .growth-windows { justify-content: center; }
   .growth-windows button { flex: 0 0 calc((100% - 12px) / 3); }
