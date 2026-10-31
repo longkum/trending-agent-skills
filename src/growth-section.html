@@ -11,8 +11,8 @@
             <button type="button" data-growth-window="1" aria-pressed="false" title="官方历史数据统计最近一个完整日，非滚动 24 小时">24 小时</button>
             <button type="button" data-growth-window="7" aria-pressed="true">7 天涨星</button>
             <button type="button" data-growth-window="30" aria-pressed="false">30 天涨星</button>
-            <button type="button" data-growth-window="rate7" aria-pressed="false">7 天增长率</button>
-            <button type="button" data-growth-window="rate30" aria-pressed="false">30 天增长率</button>
+            <button type="button" data-growth-window="rate7" aria-pressed="false">7 天新增占比</button>
+            <button type="button" data-growth-window="rate30" aria-pressed="false">30 天新增占比</button>
           </div>
           <div class="growth-filters-row">
             <label><span>检索</span><input id="growth-query" type="search" placeholder="仓库名称或用途" maxlength="200"></label>
@@ -21,14 +21,14 @@
           </div>
         </form>
         <div class="growth-status" id="growth-status" role="status" aria-live="polite">正在加载涨星数据…</div>
-        <div class="growth-headings" aria-hidden="true"><span>排名</span><span>项目</span><span>统计窗口新增</span><span>增长率</span><span>趋势</span></div>
+        <div class="growth-headings" aria-hidden="true"><span>排名</span><span>项目</span><span>统计窗口新增</span><span>新增占比</span><span>趋势</span></div>
         <div class="growth-list" id="growth-list" role="list" aria-label="涨星排行榜"></div>
         <nav class="growth-pages" id="growth-pages" aria-label="涨星榜分页" hidden></nav>
         <details class="growth-method">
           <summary>数据口径与覆盖范围</summary>
           <div>
             <p><strong>实测净涨星：</strong>本站逐日保存 GitHub Star 总数，在可比较的完整窗口内相减，包含取消 Star 的净变化。</p>
-            <p><strong>官方历史新增：</strong>GitHub Star History API 统计按创建日期归类且目前仍有效的 Star，不含历史取消 Star 事件。24 小时视图使用最近一个完整统计日，7 天与 30 天按完整日期分桶累计，日期边界不保证严格对齐 UTC。增长率栏改称「新增占比」，并非净增长率。</p>
+            <p><strong>官方历史新增：</strong>GitHub Star History API 统计按创建日期归类且目前仍有效的 Star，不含历史取消 Star 事件。24 小时视图使用最近一个完整统计日，7 天与 30 天按完整日期分桶累计，日期边界不保证严格对齐 UTC。榜单会按当前数据来源标注「新增占比」或「净增长率」。</p>
             <p><strong>目录参考：</strong>仅在历史源未覆盖 7 天窗口时使用原 `gain_7d` 字段。该值未经独立快照复核，不用于历史曲线。</p>
             <p>增长率和新增占比排名均要求窗口基数至少 10 星。榜单仅覆盖本站收录仓库，缺失历史不会补零。<a href="https://docs.github.com/en/rest/activity/starring#get-repository-star-history" target="_blank" rel="noopener noreferrer">GitHub 官方统计说明</a></p>
           </div>
