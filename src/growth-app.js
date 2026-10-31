@@ -10,7 +10,7 @@
   var rows = catalogCore.prepareRecords(catalog.records);
   var byName = new Map(rows.map(function (item) { return [item.name, item]; }));
   var periods = core.WINDOWS;
-  var state = {window: '1', track: 'all', category: 'all', query: '', page: 1};
+  var state = {window: '7', track: 'all', category: 'all', query: '', page: 1};
   var source = {schema: 1, as_of: null, snapshot_days: 0, records: {}};
   var ready = false;
   var perPage = 12;
@@ -40,7 +40,7 @@
     var track = params.get('track');
     var category = params.get('category');
     var page = params.get('page');
-    state.window = periods.includes(selection) ? selection : '1';
+    state.window = periods.includes(selection) ? selection : '7';
     state.track = ['all', 'skills', 'ai'].includes(track) ? track : 'all';
     state.category = (catalog.categories || []).some(function (c) { return c.id === category; }) ? category : 'all';
     state.query = Array.from(params.get('q') || '').slice(0, 200).join('');
@@ -57,7 +57,7 @@
   }
   function storeHash() {
     var params = new URLSearchParams();
-    if (state.window !== '1') params.set('window', state.window);
+    if (state.window !== '7') params.set('window', state.window);
     if (state.track !== 'all') params.set('track', state.track);
     if (state.category !== 'all') params.set('category', state.category);
     if (state.query) params.set('q', state.query);
@@ -115,15 +115,17 @@
     else { link.removeAttribute('href'); }
     identity.append(link);
     identity.append(make('span','growth-summary',item.catalog.summary || '暂无简介'));
-    identity.append(make('small','',item.catalog.track === 'skills' ? 'Skills  |  ' + formatter.format(item.growth.stars) + ' 星' : 'AI  |  ' + formatter.format(item.growth.stars) + ' 星'));
+    identity.append(make('small','', (item.catalog.track === 'skills' ? 'Skills' : 'AI') + '  |  ' + formatter.format(item.growth.stars) + ' 星' + (item.reported ? '  |  目录参考值 · ' + item.refreshed + ' 更新' : '')));
     row.append(identity);
     var delta = make('span','growth-delta',signed(item.metric.delta));
     if (item.metric.delta < 0) delta.classList.add('negative');
     delta.setAttribute('aria-label','窗口净增 ' + signed(item.metric.delta) + ' 星');
+    if (item.reported) delta.title = '数据源：目录 gain_7d 字段，尚未经本站日快照独立核验';
     row.append(delta, make('span','growth-rate',percentage(item.metric.rate)));
     var spark = make('div','growth-spark');
     var svg = svgChart(item.growth.history, state.window.indexOf('30') >= 0 ? 30 : 7, 120, 36);
     if (svg) spark.append(svg);
+    else if (item.reported) spark.append(make('span','growth-spark-empty','待积累历史'));
     row.append(spark);
     return row;
   }
@@ -146,14 +148,15 @@
       (coverage && Number.isInteger(coverage.total) ? '  |  覆盖 ' + formatter.format(coverage.collected) + ' / ' + formatter.format(coverage.total) : '');
     list.replaceChildren();
     if (!ready) { status.textContent = '正在加载可靠的 Star 历史快照…'; pages.hidden = true; return; }
-    if (!source.as_of || source.snapshot_days < 2) {
-      status.textContent = '历史数据积累中。首次采集完成后，需要第二天的真实快照才能计算 24 小时涨星。7 天和 30 天榜会随采集周期逐步开放。';
-      pages.hidden = true; return;
-    }
     var ranking = core.rank(rows, source.records, state.window, state);
+    var usingReported = false;
+    if (!ranking.length && (state.window === '7' || state.window === 'rate7')) {
+      ranking = core.reportedRank(rows, state.window, state, catalog.updated, 2);
+      usingReported = ranking.length > 0;
+    }
     var total = ranking.length;
     if (!total) {
-      status.textContent = '当前筛选条件下没有足够的真实历史快照。尝试其他统计窗口或清除筛选。';
+      status.textContent = '当前没有可计算的' + (state.window === '1' ? '24 小时' : state.window.indexOf('30') >= 0 ? '30 天' : '7 天') + '真实涨星快照。历史采集已配置，正式榜单需要在对应日期积累可比较的数据。可先查看「7 天涨星」参考榜。';
       pages.hidden = true; return;
     }
     var totalPages = Math.max(1, Math.ceil(total / perPage));
@@ -162,7 +165,10 @@
     var fragment = document.createDocumentFragment();
     ranking.slice(start,start + perPage).forEach(function (row,index) { fragment.append(drawRow(row,start+index+1)); });
     list.append(fragment);
-    status.textContent = '共 ' + formatter.format(total) + ' 个项目具备完整的统计窗口数据；以 ' + activeDate() + ' 为截止时间';
+    status.textContent = usingReported
+      ? '参考榜 · ' + formatter.format(total) + ' 项：依据现有目录 gain_7d 字段，限定最近 3 个自然日更新；未由本站连续历史快照复核，勿与正式历史榜混淆。'
+      : '正式历史榜 · ' + formatter.format(total) + ' 个项目具备完整的统计窗口数据；以 ' + activeDate() + ' 为截止时间';
+    if (usingReported) asOf.textContent = '参考数据更新：' + catalog.updated + '  |  真实日快照 ' + (source.snapshot_days || 0) + ' 天';
     drawPagination(totalPages,total);
   }
   (catalog.categories || []).forEach(function (cat) {
@@ -206,7 +212,10 @@
     graphic.replaceChildren();
     var current = activeDetailName && source.records[activeDetailName];
     if (!current || !Array.isArray(current.history)) {
-      caption.textContent = '历史数据积累中。暂时没有可信的 Star 历史曲线。';
+      var reported = activeDetailName && byName.get(activeDetailName);
+      caption.textContent = reported && reported.gain_7d
+        ? '目录参考：近 7 天变化 ' + signed(reported.gain_7d) + ' 星（' + reported.last_refreshed + ' 更新，未经日快照核验）。真实历史趋势仍在积累。'
+        : '历史数据积累中。暂时没有可信的 Star 历史曲线。';
       return;
     }
     var pts = core.points(current.history,days);
@@ -227,8 +236,15 @@
 
   readHash(); syncInputs(); render();
   if (location.hash.startsWith('#growth?')) section.scrollIntoView({block:'start',behavior:'instant'});
-  fetch('data/star-growth.json',{cache:'no-store'})
-    .then(function (response) {if (!response.ok) throw new Error('HTTP '+response.status);return response.json();})
+  // Actions commits made with GITHUB_TOKEN may not trigger GitHub Pages
+  // redeploys. Fetch the current public repository data first, keeping the
+  // deployed local JSON as an offline/availability fallback.
+  function fetchGrowth(url) {
+    return fetch(url,{cache:'no-store'})
+      .then(function (response) {if (!response.ok) throw new Error('HTTP '+response.status);return response.json();});
+  }
+  fetchGrowth('https://raw.githubusercontent.com/longkum/trending-agent-skills/main/data/star-growth.json?at=' + Date.now())
+    .catch(function () {return fetchGrowth('data/star-growth.json');})
     .then(function (payload) {
       if (!payload || payload.schema !== 1 || typeof payload.records !== 'object' || Array.isArray(payload.records)) throw new Error('无效的涨星数据格式');
       source = payload; ready=true; render();
@@ -236,8 +252,8 @@
     })
     .catch(function (error) {
       ready=true;
-      status.textContent = '涨星历史暂时无法加载。请查看原始数据或稍后重试。';
-      asOf.textContent = '数据状态：不可用';
+      render();
+      asOf.textContent = '历史快照不可用 · 目录参考数据截至 ' + catalog.updated;
       console.warn('Growth data unavailable:',error.message);
     });
 })();

@@ -5,6 +5,9 @@ on:
     # A stable UTC hour makes consecutive measurements comparable.
     - cron: '17 6 * * *'
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/star-growth.yml']
 
 permissions:
   contents: write
