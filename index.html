@@ -506,6 +506,78 @@ body:has(dialog[open]) { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; }
 }
+
+
+/* Uses only the site's existing Radix Colors semantic tokens. */
+.growth { scroll-margin-top: 24px; padding: 28px 0 40px; margin: 0 0 44px; border-top: var(--hairline) solid var(--line); border-bottom: var(--hairline) solid var(--line); }
+.growth-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 22px; }
+.growth-description { margin: 8px 0 0; color: var(--muted); font-size: var(--text-small); }
+.growth-asof { font-size: var(--text-small); color: var(--muted); font-variant-numeric: tabular-nums; }
+.growth-filters { margin-bottom: 6px; }
+.growth-windows { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.growth-windows button { min-height: 40px; padding: 7px 12px; font-size: var(--text-small); color: var(--muted); border-radius: var(--radius); }
+.growth-windows button:hover { background: var(--control); color: var(--text); }
+.growth-windows button[aria-pressed="true"] { background: var(--accent-subtle); color: var(--accent-strong); font-weight: 600; }
+.growth-filters-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.growth-filters-row label { display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: var(--text-small); }
+.growth-filters-row label:first-child { flex: 1 1 240px; }
+.growth-filters-row input, .growth-filters-row select { min-height: 40px; width: 100%; min-width: 0; background: var(--subtle); border: var(--hairline) solid var(--control-line); border-radius: var(--radius); padding: 8px 11px; color: var(--text); font-size: var(--text-small); }
+.growth-filters-row select { min-width: 112px; }
+.growth-status { font-size: var(--text-small); color: var(--muted); padding: 14px 0; min-height: 40px; }
+.growth-headings, .growth-item { display: grid; grid-template-columns: 50px minmax(0, 1fr) 126px 90px 120px; gap: 16px; align-items: center; }
+.growth-headings { color: var(--muted); border-bottom: var(--hairline) solid var(--line); padding: 12px 4px; font-size: var(--text-small); }
+.growth-headings > span:nth-child(n+3) { text-align: right; }
+.growth-item { border-bottom: var(--hairline) solid var(--line); padding: 15px 4px; }
+.growth-item:hover { background: var(--subtle); }
+.growth-rank { font-variant-numeric: tabular-nums; color: var(--muted); font-size: var(--text-small); }
+.growth-identity { min-width: 0; }
+.growth-name { display: block; overflow-wrap: anywhere; font-weight: 600; line-height: 1.45; }
+.growth-name:hover { color: var(--accent-text); }
+.growth-summary { display: block; color: var(--muted); font-size: var(--text-small); line-height: 1.5; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.growth-identity small { display: block; color: var(--muted); font-size: var(--text-small); line-height: 1.4; }
+.growth-delta, .growth-rate { text-align: right; font-variant-numeric: tabular-nums; font-size: var(--text-body); }
+.growth-delta { color: var(--accent-text); font-weight: 600; }
+.growth-delta.negative { color: var(--error); }
+.growth-rate { font-size: var(--text-small); }
+.growth-spark { color: var(--accent-text); min-width: 0; }
+.growth-spark svg { width: 120px; height: 36px; fill: none; }
+.growth-spark path { stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.growth-spark svg[aria-label] { display: block; }
+.growth-pages { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 16px; font-size: var(--text-small); }
+.growth-pages button { padding: 8px 12px; min-height: 40px; border: var(--hairline) solid var(--line); border-radius: var(--radius); }
+.growth-pages button:hover:not(:disabled) { background: var(--control); }
+.growth-pages button:disabled { opacity: .45; }
+.growth-method { color: var(--muted); font-size: var(--text-small); margin: 20px 0 0; max-width: 85ch; }
+.growth-detail-chart { margin-top: 22px; border-top: var(--hairline) solid var(--line); padding-top: 18px; }
+.growth-detail-chart h3 { margin: 0 0 12px; font-size: var(--text-body); }
+.growth-chart-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.growth-chart-controls button { font-size: var(--text-small); min-height: 36px; padding: 6px 12px; border-radius: var(--radius); }
+.growth-chart-controls button[aria-pressed="true"] { background: var(--accent-subtle); color: var(--accent-strong); }
+.growth-detail-graphic { color: var(--accent-text); }
+.growth-detail-graphic svg { width: 100%; height: 142px; fill: none; }
+.growth-detail-graphic path { stroke: currentColor; stroke-width: 1.5; fill: none; }
+.growth-detail-graphic circle { fill: currentColor; }
+.growth-chart-caption { color: var(--muted); font-size: var(--text-small); }
+@media (max-width: 850px) {
+  .growth-headings, .growth-item { grid-template-columns: 40px minmax(0, 1fr) 90px 75px; gap: 12px; }
+  .growth-headings > span:last-child, .growth-spark { display: none; }
+}
+@media (max-width: 620px) {
+  .growth { padding-top: 22px; margin-bottom: 32px; }
+  .growth-filters-row label { flex: 1 1 100%; }
+  .growth-filters-row label:first-child { flex-basis: 100%; }
+  .growth-filters-row label:not(:first-child) { flex-basis: calc(50% - 6px); }
+  .growth-headings { display: none; }
+  .growth-item { grid-template-columns: 32px minmax(0, 1fr); gap: 5px 10px; align-items: start; }
+  .growth-rank { grid-column: 1; grid-row: 1; }
+  .growth-identity { grid-column: 2; grid-row: 1; }
+  .growth-delta { grid-column: 2; grid-row: 2; text-align: left; }
+  .growth-rate { grid-column: 2; grid-row: 3; text-align: left; }
+  .growth-rate::before { content: '增长率 '; color: var(--muted); }
+  .growth-spark { display: none; }
+  .growth-windows button { flex: 1 1 auto; }
+}
+@media (prefers-reduced-motion: reduce) { .growth *, .growth *::before, .growth *::after { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
@@ -517,6 +589,7 @@ body:has(dialog[open]) { overflow: hidden; }
         <span>trending-agent-skills</span>
       </a>
       <div class="nav-links">
+        <a href="#growth">涨星榜</a>
         <a href="https://github.com/longkum/trending-agent-skills" target="_blank" rel="noopener noreferrer">项目源码 <span aria-hidden="true">↗</span></a>
         <a href="data/repos.json" target="_blank" rel="noopener noreferrer">原始数据 <span aria-hidden="true">↗</span></a>
         <button class="theme-button" id="theme-toggle" type="button" aria-label="切换深色模式" aria-pressed="false" hidden>
@@ -540,6 +613,35 @@ body:has(dialog[open]) { overflow: hidden; }
           </dl>
         </div>
       </header>
+
+      <section class="growth" id="growth" aria-labelledby="growth-title" tabindex="-1">
+        <div class="growth-heading">
+          <div>
+            <h2 id="growth-title">涨星榜</h2>
+            <p class="growth-description">发现本站收录项目中近期真正上涨的仓库</p>
+          </div>
+          <span class="growth-asof" id="growth-asof">正在检查历史快照</span>
+        </div>
+        <form id="growth-form" class="growth-filters" role="search" aria-label="涨星榜搜索和筛选">
+          <div class="growth-windows" role="group" aria-label="涨星榜统计窗口">
+            <button type="button" data-growth-window="1" aria-pressed="true">24 小时</button>
+            <button type="button" data-growth-window="7" aria-pressed="false">7 天涨星</button>
+            <button type="button" data-growth-window="30" aria-pressed="false">30 天涨星</button>
+            <button type="button" data-growth-window="rate7" aria-pressed="false">7 天增长率</button>
+            <button type="button" data-growth-window="rate30" aria-pressed="false">30 天增长率</button>
+          </div>
+          <div class="growth-filters-row">
+            <label><span>检索</span><input id="growth-query" type="search" placeholder="仓库名称或用途" maxlength="200"></label>
+            <label><span>分类</span><select id="growth-track"><option value="all">全部项目</option><option value="skills">Skills</option><option value="ai">AI</option></select></label>
+            <label><span>领域</span><select id="growth-category"><option value="all">全部领域</option></select></label>
+          </div>
+        </form>
+        <div class="growth-status" id="growth-status" role="status" aria-live="polite">正在加载涨星数据…</div>
+        <div class="growth-headings" aria-hidden="true"><span>排名</span><span>项目</span><span>统计窗口新增</span><span>增长率</span><span>趋势</span></div>
+        <div class="growth-list" id="growth-list" role="list" aria-label="涨星排行榜"></div>
+        <nav class="growth-pages" id="growth-pages" aria-label="涨星榜分页" hidden></nav>
+        <p class="growth-method">按实际 UTC 日快照计算净变化，历史不足不参与排名。增长率榜仅统计窗口起点至少 10 星的项目。仅代表本站收录项目，不是 GitHub 全站榜单。</p>
+      </section>
 
       <section class="catalog" id="catalog" aria-label="仓库目录" tabindex="-1">
         <form class="filter" id="search-form" role="search">
@@ -1244,6 +1346,310 @@ body:has(dialog[open]) { overflow: hidden; }
       destination.focus({ preventScroll: true });
     }
   });
+})();
+
+;
+(function (root, factory) {
+  'use strict';
+  if (typeof module === 'object' && module.exports) module.exports = factory();
+  else root.GrowthCore = factory();
+})(typeof window !== 'undefined' ? window : this, function () {
+  'use strict';
+  var WINDOWS = ['1', '7', '30', 'rate7', 'rate30'];
+  function validMetric(metric, rate) {
+    return metric && typeof metric === 'object' &&
+      Number.isSafeInteger(metric.delta) &&
+      Number.isSafeInteger(metric.baseline) && metric.baseline >= 0 &&
+      (!rate || (metric.rate_rankable === true && Number.isFinite(metric.rate)));
+  }
+  function selectedMetric(record, selection) {
+    if (!record || !record.windows || WINDOWS.indexOf(selection) === -1) return null;
+    var isRate = selection.slice(0, 4) === 'rate';
+    var period = isRate ? selection.slice(4) : selection;
+    var metric = record.windows[period];
+    return validMetric(metric, isRate) ? metric : null;
+  }
+  function compareNames(a, b) {
+    var left = a.name.toLowerCase(), right = b.name.toLowerCase();
+    return left < right ? -1 : left > right ? 1 : a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+  }
+  function rank(catalogRecords, growthRecords, selection, filters) {
+    filters = filters || {};
+    if (!Array.isArray(catalogRecords) || !growthRecords || typeof growthRecords !== 'object') return [];
+    var isRate = selection.slice(0, 4) === 'rate';
+    var terms = String(filters.query || '').normalize('NFKC').toLowerCase().trim().split(/\s+/).filter(Boolean);
+    var rows = catalogRecords.reduce(function (out, record) {
+      if (!record || !record.name || (filters.track && filters.track !== 'all' && record.track !== filters.track) ||
+          (filters.category && filters.category !== 'all' && record.category !== filters.category)) return out;
+      var haystack = [record.name, record.summary, record.summary_en, record.description].join(' ').normalize('NFKC').toLowerCase();
+      if (terms.some(function (term) { return haystack.indexOf(term) === -1; })) return out;
+      var growth = growthRecords[record.name];
+      var metric = selectedMetric(growth, selection);
+      if (!metric) return out;
+      out.push({name: record.name, catalog: record, growth: growth, metric: metric});
+      return out;
+    }, []);
+    rows.sort(function (a, b) {
+      if (isRate && a.metric.rate !== b.metric.rate) return b.metric.rate - a.metric.rate;
+      if (!isRate && a.metric.delta !== b.metric.delta) return b.metric.delta - a.metric.delta;
+      return b.growth.stars - a.growth.stars || compareNames(a, b);
+    });
+    return rows;
+  }
+  function points(history, limitDays) {
+    if (!Array.isArray(history) || !history.length) return [];
+    var filtered = history.filter(function (p) {
+      return Array.isArray(p) && /^\d{4}-\d{2}-\d{2}$/.test(p[0]) && Number.isSafeInteger(p[1]) && p[1] >= 0;
+    }).slice().sort(function (a,b) { return a[0].localeCompare(b[0]); });
+    if (!filtered.length || !limitDays) return filtered;
+    var last = Date.parse(filtered[filtered.length-1][0] + 'T00:00:00Z');
+    return filtered.filter(function (p) { return last - Date.parse(p[0] + 'T00:00:00Z') <= limitDays * 86400000; });
+  }
+  return Object.freeze({WINDOWS: WINDOWS, selectedMetric: selectedMetric, rank: rank, points: points});
+});
+;
+(function () {
+  'use strict';
+  var core = window.GrowthCore;
+  var catalogCore = window.CatalogCore;
+  var section = document.getElementById('growth');
+  if (!core || !catalogCore || !section) return;
+  var catalog;
+  try { catalog = JSON.parse(document.getElementById('catalog-data').textContent); }
+  catch (_) { return; }
+  var rows = catalogCore.prepareRecords(catalog.records);
+  var byName = new Map(rows.map(function (item) { return [item.name, item]; }));
+  var periods = core.WINDOWS;
+  var state = {window: '1', track: 'all', category: 'all', query: '', page: 1};
+  var source = {schema: 1, as_of: null, snapshot_days: 0, records: {}};
+  var ready = false;
+  var perPage = 12;
+  var list = document.getElementById('growth-list');
+  var status = document.getElementById('growth-status');
+  var asOf = document.getElementById('growth-asof');
+  var pages = document.getElementById('growth-pages');
+  var queryInput = document.getElementById('growth-query');
+  var trackInput = document.getElementById('growth-track');
+  var categoryInput = document.getElementById('growth-category');
+  var formatter = new Intl.NumberFormat('en-US');
+
+  function make(tag, className, content) {
+    var el = document.createElement(tag);
+    if (className) el.className = className;
+    if (content !== undefined) el.textContent = String(content);
+    return el;
+  }
+  function signed(value) { return value > 0 ? '+' + formatter.format(value) : formatter.format(value); }
+  function percentage(value) { return value == null ? '不适用' : (value > 0 ? '+' : '') + value.toFixed(2) + '%'; }
+  function activeDate() { return source.as_of ? source.as_of.slice(0,16).replace('T',' ') + ' UTC' : '尚无可靠 Star 快照'; }
+
+  function readHash() {
+    if (!location.hash.startsWith('#growth?')) return false;
+    var params = new URLSearchParams(location.hash.slice('#growth?'.length));
+    var selection = params.get('window');
+    var track = params.get('track');
+    var category = params.get('category');
+    var page = params.get('page');
+    state.window = periods.includes(selection) ? selection : '1';
+    state.track = ['all', 'skills', 'ai'].includes(track) ? track : 'all';
+    state.category = (catalog.categories || []).some(function (c) { return c.id === category; }) ? category : 'all';
+    state.query = Array.from(params.get('q') || '').slice(0, 200).join('');
+    state.page = /^[1-9]\d*$/.test(page || '') && Number.isSafeInteger(Number(page)) ? Number(page) : 1;
+    return true;
+  }
+  function syncInputs() {
+    queryInput.value = state.query;
+    trackInput.value = state.track;
+    categoryInput.value = state.category;
+    document.querySelectorAll('[data-growth-window]').forEach(function (button) {
+      button.setAttribute('aria-pressed', String(button.dataset.growthWindow === state.window));
+    });
+  }
+  function storeHash() {
+    var params = new URLSearchParams();
+    if (state.window !== '1') params.set('window', state.window);
+    if (state.track !== 'all') params.set('track', state.track);
+    if (state.category !== 'all') params.set('category', state.category);
+    if (state.query) params.set('q', state.query);
+    if (state.page > 1) params.set('page', String(state.page));
+    var fragment = '#growth?' + params.toString();
+    if (location.hash === fragment) return;
+    try { history.pushState(null, '', location.pathname + location.search + fragment); }
+    catch (_) { location.hash = 'growth'; }
+  }
+  function svgChart(history, days, width, height) {
+    var points = core.points(history, days);
+    if (points.length < 2) return null;
+    var documentNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(documentNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Star 变化趋势，从 ' + points[0][0] + ' 的 ' + formatter.format(points[0][1]) + ' 到 ' + points[points.length - 1][0] + ' 的 ' + formatter.format(points[points.length - 1][1]));
+    var stamps = points.map(function (p) { return Date.parse(p[0] + 'T00:00:00Z'); });
+    var minTime = stamps[0];
+    var maxTime = stamps[stamps.length-1];
+    var values = points.map(function (p) { return p[1]; });
+    var min = Math.min.apply(null, values);
+    var max = Math.max.apply(null, values);
+    var pad = 4;
+    var prevTime = null;
+    var segments = [];
+    var path = '';
+    points.forEach(function (p, index) {
+      var x = pad + (stamps[index] - minTime) / (maxTime - minTime || 1) * (width - pad*2);
+      var y = pad + (max === min ? 0.5 : (max - p[1]) / (max - min)) * (height - pad*2);
+      // A missing day is deliberately not drawn as an unbroken line.
+      if (prevTime != null && stamps[index] - prevTime > 1.5 * 86400000) {
+        if (path) segments.push(path);
+        path = '';
+      }
+      path += (path ? 'L' : 'M') + x.toFixed(2) + ',' + y.toFixed(2);
+      prevTime = stamps[index];
+    });
+    if (path) segments.push(path);
+    segments.forEach(function (d) {
+      var line = document.createElementNS(documentNS, 'path');
+      line.setAttribute('d', d);
+      svg.appendChild(line);
+    });
+    return svg;
+  }
+  function drawRow(item, rank) {
+    var row = make('article', 'growth-item');
+    row.setAttribute('role','listitem');
+    row.append(make('span', 'growth-rank', String(rank).padStart(2, '0')));
+    var identity = make('div','growth-identity');
+    var link = make('a','growth-name',item.name);
+    var url = catalogCore.safeRepoUrl(item.catalog);
+    if (url) { link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer'; }
+    else { link.removeAttribute('href'); }
+    identity.append(link);
+    identity.append(make('span','growth-summary',item.catalog.summary || '暂无简介'));
+    identity.append(make('small','',item.catalog.track === 'skills' ? 'Skills  |  ' + formatter.format(item.growth.stars) + ' 星' : 'AI  |  ' + formatter.format(item.growth.stars) + ' 星'));
+    row.append(identity);
+    var delta = make('span','growth-delta',signed(item.metric.delta));
+    if (item.metric.delta < 0) delta.classList.add('negative');
+    delta.setAttribute('aria-label','窗口净增 ' + signed(item.metric.delta) + ' 星');
+    row.append(delta, make('span','growth-rate',percentage(item.metric.rate)));
+    var spark = make('div','growth-spark');
+    var svg = svgChart(item.growth.history, state.window.indexOf('30') >= 0 ? 30 : 7, 120, 36);
+    if (svg) spark.append(svg);
+    row.append(spark);
+    return row;
+  }
+  function drawPagination(totalPages, total) {
+    pages.replaceChildren();
+    if (totalPages < 2) { pages.hidden = true; return; }
+    pages.hidden = false;
+    var previous = make('button','','上一页');
+    previous.type = 'button'; previous.disabled = state.page === 1;
+    previous.addEventListener('click', function () {state.page--; storeHash(); render(); section.focus({preventScroll:true});});
+    var next = make('button','','下一页');
+    next.type = 'button'; next.disabled = state.page === totalPages;
+    next.addEventListener('click', function () {state.page++; storeHash(); render(); section.focus({preventScroll:true});});
+    pages.append(previous, make('span','',state.page + ' / ' + totalPages + '，共 ' + total + ' 个项目'), next);
+  }
+  function render() {
+    syncInputs();
+    var coverage = source.coverage;
+    asOf.textContent = '采集时间：' + activeDate() +
+      (coverage && Number.isInteger(coverage.total) ? '  |  覆盖 ' + formatter.format(coverage.collected) + ' / ' + formatter.format(coverage.total) : '');
+    list.replaceChildren();
+    if (!ready) { status.textContent = '正在加载可靠的 Star 历史快照…'; pages.hidden = true; return; }
+    if (!source.as_of || source.snapshot_days < 2) {
+      status.textContent = '历史数据积累中。首次采集完成后，需要第二天的真实快照才能计算 24 小时涨星。7 天和 30 天榜会随采集周期逐步开放。';
+      pages.hidden = true; return;
+    }
+    var ranking = core.rank(rows, source.records, state.window, state);
+    var total = ranking.length;
+    if (!total) {
+      status.textContent = '当前筛选条件下没有足够的真实历史快照。尝试其他统计窗口或清除筛选。';
+      pages.hidden = true; return;
+    }
+    var totalPages = Math.max(1, Math.ceil(total / perPage));
+    state.page = Math.min(state.page, totalPages);
+    var start = (state.page - 1) * perPage;
+    var fragment = document.createDocumentFragment();
+    ranking.slice(start,start + perPage).forEach(function (row,index) { fragment.append(drawRow(row,start+index+1)); });
+    list.append(fragment);
+    status.textContent = '共 ' + formatter.format(total) + ' 个项目具备完整的统计窗口数据；以 ' + activeDate() + ' 为截止时间';
+    drawPagination(totalPages,total);
+  }
+  (catalog.categories || []).forEach(function (cat) {
+    if (!cat || !cat.id) return;
+    var option = make('option','',cat.name || cat.id);
+    option.value = cat.id;
+    categoryInput.append(option);
+  });
+  document.querySelectorAll('[data-growth-window]').forEach(function (button) {
+    button.addEventListener('click',function () {state.window=this.dataset.growthWindow;state.page=1;storeHash();render();});
+  });
+  trackInput.addEventListener('change',function () {state.track=this.value;state.page=1;storeHash();render();});
+  categoryInput.addEventListener('change',function () {state.category=this.value;state.page=1;storeHash();render();});
+  queryInput.addEventListener('input',function () {state.query=Array.from(this.value).slice(0,200).join('');state.page=1;storeHash();render();});
+  document.getElementById('growth-form').addEventListener('submit',function (event) {event.preventDefault();});
+  window.addEventListener('popstate',function () { if (readHash()) render(); });
+  window.addEventListener('hashchange',function () { if (readHash()) render(); });
+
+  // Enrich the existing catalog's project details, preserving its original
+  // search, sorting, keyboard flow and safe GitHub links.
+  var detail = document.getElementById('repo-dialog');
+  var chartSection = make('section','growth-detail-chart');
+  chartSection.append(make('h3','', 'Star 历史趋势'));
+  var controls = make('div','growth-chart-controls');
+  var graphic = make('div','growth-detail-graphic');
+  var caption = make('p','growth-chart-caption','历史数据积累中');
+  [7,30,90,0].forEach(function (days) {
+    var button = make('button','',days === 0 ? '全部历史' : days + ' 天');
+    button.type = 'button'; button.dataset.days = String(days);
+    button.setAttribute('aria-pressed',String(days === 30));
+    button.addEventListener('click',function () {
+      controls.querySelectorAll('button').forEach(function (b) {b.setAttribute('aria-pressed',String(b===button));});
+      updateDetail(days);
+    });
+    controls.append(button);
+  });
+  chartSection.append(controls,graphic,caption);
+  detail.querySelector('.dialog-body').append(chartSection);
+  var activeDetailName = null;
+  function updateDetail(days) {
+    graphic.replaceChildren();
+    var current = activeDetailName && source.records[activeDetailName];
+    if (!current || !Array.isArray(current.history)) {
+      caption.textContent = '历史数据积累中。暂时没有可信的 Star 历史曲线。';
+      return;
+    }
+    var pts = core.points(current.history,days);
+    var chart = svgChart(current.history,days,600,142);
+    if (chart) graphic.append(chart);
+    caption.textContent = pts.length < 2
+      ? '只有 ' + pts.length + ' 个有效历史快照，尚不足以绘制趋势。'
+      : pts[0][0] + ' 至 ' + pts[pts.length-1][0] + '，' + formatter.format(pts[0][1]) + ' → ' + formatter.format(pts[pts.length-1][1]) + ' 星。缺失日期不连接曲线。';
+  }
+  var mainResults = document.getElementById('results');
+  mainResults.addEventListener('click',function (event) {
+    var button = event.target.closest('[data-detail]');
+    if (!button) return;
+    activeDetailName = button.dataset.detail;
+    controls.querySelectorAll('button').forEach(function (b) {b.setAttribute('aria-pressed',String(b.dataset.days==='30'));});
+    updateDetail(30);
+  });
+
+  readHash(); syncInputs(); render();
+  if (location.hash.startsWith('#growth?')) section.scrollIntoView({block:'start',behavior:'instant'});
+  fetch('data/star-growth.json',{cache:'no-store'})
+    .then(function (response) {if (!response.ok) throw new Error('HTTP '+response.status);return response.json();})
+    .then(function (payload) {
+      if (!payload || payload.schema !== 1 || typeof payload.records !== 'object' || Array.isArray(payload.records)) throw new Error('无效的涨星数据格式');
+      source = payload; ready=true; render();
+      if (activeDetailName) updateDetail(30);
+    })
+    .catch(function (error) {
+      ready=true;
+      status.textContent = '涨星历史暂时无法加载。请查看原始数据或稍后重试。';
+      asOf.textContent = '数据状态：不可用';
+      console.warn('Growth data unavailable:',error.message);
+    });
 })();
 </script>
 </body>
