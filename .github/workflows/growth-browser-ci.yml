@@ -1,0 +1,42 @@
+name: Star growth browser QA
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - 'src/growth-*'
+      - 'src/star-activity-core.js'
+      - 'src/index.template.html'
+      - 'index.html'
+      - 'tests/site-smoke.cjs'
+      - 'data/star-activity.json'
+      - '.github/workflows/growth-browser-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright automation library
+        run: npm install --no-save --ignore-scripts playwright@1.55.0
+      - name: Prepare Chromium if system Chrome is absent
+        run: |
+          if ! command -v google-chrome && ! command -v chromium; then
+            npx playwright install --with-deps chromium
+          fi
+      - name: Validate five windows, details, and 390px + 1440px layouts
+        run: node tests/site-smoke.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: star-growth-browser-screenshots
+          path: .artifacts/*.png
+          if-no-files-found: warn
