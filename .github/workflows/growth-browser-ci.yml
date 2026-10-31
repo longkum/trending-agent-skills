@@ -32,6 +32,8 @@ jobs:
           if ! command -v google-chrome && ! command -v chromium; then
             npx playwright install --with-deps chromium
           fi
+      - name: Install Chinese font coverage for screenshot QA
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends fonts-noto-cjk
       - name: Validate five windows, details, and 390px + 1440px layouts
         run: node tests/site-smoke.cjs
       - uses: actions/upload-artifact@v4
