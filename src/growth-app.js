@@ -118,10 +118,20 @@
     else { link.removeAttribute('href'); }
     identity.append(link);
     identity.append(make('span','growth-summary',item.catalog.summary || '暂无简介'));
-    var metadata = (item.catalog.track === 'skills' ? 'Skills' : 'AI') + '  |  ' + formatter.format(item.growth.stars) + ' 星';
-    if (item.activity) metadata += '  |  官方历史新增  |  截至 ' + item.windowEnd;
-    else if (item.reported) metadata += '  |  目录参考  |  更新 ' + item.refreshed;
-    identity.append(make('small','', metadata));
+    // The source is disclosed once for the entire ranking; keep row metadata
+    // focused on the values that can differ between repositories.
+    var metadata = make('small', 'growth-meta');
+    metadata.append(
+      make('span', '', item.catalog.track === 'skills' ? 'Skills' : 'AI'),
+      make('span', '', formatter.format(item.growth.stars) + ' 星')
+    );
+    var measurementDate = item.activity ? item.windowEnd : item.reported ? item.refreshed : '';
+    if (measurementDate) {
+      var date = make('time', '', '截至 ' + measurementDate);
+      date.dateTime = measurementDate;
+      metadata.append(date);
+    }
+    identity.append(metadata);
     row.append(identity);
     var delta = make('span','growth-delta',signed(item.metric.delta));
     if (item.metric.delta < 0) delta.classList.add('negative');
@@ -171,9 +181,13 @@
       usingReported = ranking.length > 0;
     }
     var total = ranking.length;
+    var sourceKind = usingArchive ? 'activity' : usingReported ? 'reference' : total ? 'net' : 'activity';
+    var ratioLabel = sourceKind === 'activity' ? '新增占比' : sourceKind === 'reference' ? '参考占比' : '净增长率';
     var column = section.querySelector('.growth-headings span:nth-child(4)');
-    if (column) column.textContent = usingArchive ? '新增占比' : '增长率';
-    section.dataset.metric = usingArchive ? 'activity' : 'net';
+    if (column) column.textContent = ratioLabel;
+    document.querySelector('[data-growth-window="rate7"]').textContent = '7 天' + ratioLabel;
+    document.querySelector('[data-growth-window="rate30"]').textContent = '30 天' + ratioLabel;
+    section.dataset.metric = sourceKind;
     if (!total) {
       var scope = activitySource.coverage || {};
       status.textContent = '当前窗口尚无可比较数据。官方历史采集覆盖 ' + formatter.format(scope.sampled || 0) +
@@ -188,7 +202,10 @@
     list.append(fragment);
     if (usingArchive) {
       var archiveCoverage = activitySource.coverage || {};
-      status.textContent = '官方历史新增：' + formatter.format(total) + ' 个项目。统计当前仍有效、在相应日期新增的 Star；不代表净涨星。';
+      var period = state.window === '1' ? '最近一个完整统计日（不是滚动 24 小时）'
+        : state.window.indexOf('30') >= 0 ? '最近 30 个完整统计日' : '最近 7 个完整统计日';
+      status.textContent = '官方历史新增：' + formatter.format(total) + ' 个项目。' + period +
+        '，按创建日期统计目前仍有效的 Star；不是净涨星。';
       asOf.textContent = '历史覆盖 ' + formatter.format(archiveCoverage.sampled || 0) + '/' +
         formatter.format(archiveCoverage.total || rows.length) + '  |  最近采集 ' +
         String(activitySource.updated_at || '').slice(0, 16).replace('T',' ') + ' UTC';

@@ -49,6 +49,17 @@ async function checkPage(browser,base,width,height) {
     null,{timeout:20000});
   assert.ok((await first.count())>0, 'default 7-day ranking should be populated');
   assert.match(await page.locator('#growth-status').innerText(),/官方历史新增|实测净涨星/);
+  const sourceKind = await page.locator('#growth').getAttribute('data-metric');
+  const rowMeta = await page.locator('.growth-meta').first().innerText();
+  assert.match(rowMeta, /Skills|AI/);
+  assert.match(rowMeta, /星/);
+  assert.doesNotMatch(rowMeta, /官方历史新增|目录参考/, 'Source names belong in the shared status, not repeated in every row');
+  assert.doesNotMatch(await page.locator('#growth').innerText(), /\u00b7/, 'UI should not use midpoint text separators');
+  const firstRowDate = page.locator('.growth-meta time').first();
+  assert.match(await firstRowDate.getAttribute('datetime'), /^\d{4}-\d{2}-\d{2}$/);
+  const shownRatio = sourceKind === 'activity' ? '新增占比' : sourceKind === 'reference' ? '参考占比' : '净增长率';
+  assert.match(await page.locator('[data-growth-window="rate7"]').innerText(), new RegExp(shownRatio));
+  assert.match(await page.locator('.growth-headings span:nth-child(4)').innerText(), new RegExp(shownRatio));
   const searchLabel = await page.locator('.growth-filters-row label:first-child > span').boundingBox();
   assert.ok(searchLabel && searchLabel.height <= 23, 'Search label should remain on one line');
   if (width <= 620) {
@@ -67,8 +78,16 @@ async function checkPage(browser,base,width,height) {
     await page.locator('[data-growth-window="' + view + '"]').click();
     assert.ok((await first.count())>0, view+' window is empty');
     assert.equal(await page.locator('[data-growth-window="'+view+'"]').getAttribute('aria-pressed'),'true');
+    if (view === '1' && await page.locator('#growth').getAttribute('data-metric') === 'activity') {
+      assert.match(await page.locator('#growth-status').innerText(), /完整统计日.*不是滚动 24 小时/,
+        'Full-day source semantics must be visible without a hover tooltip');
+    }
   }
   await page.locator('[data-growth-window="7"]').click();
+  await page.locator('[data-growth-window="7"]').focus();
+  await page.keyboard.press('Tab');
+  assert.equal(await page.locator(':focus').getAttribute('data-growth-window'), '30',
+    'Keyboard should move predictably across ranking choices');
   const firstRank=await page.locator('.growth-rank').first().innerText();
   assert.equal(firstRank,'01');
   await page.locator('#growth-pages button').last().click();
@@ -91,6 +110,13 @@ async function checkPage(browser,base,width,height) {
   assert.ok((await page.locator('.growth-chart-caption').innerText()).length>15);
   await page.keyboard.press('Escape');
   assert.equal(await page.locator('#repo-dialog').evaluate(x=>x.open),false,'Escape closes detail');
+  const html = page.locator('html');
+  const originalTheme = await html.getAttribute('data-theme');
+  await page.locator('#theme-toggle').click();
+  const changedTheme = await html.getAttribute('data-theme');
+  assert.ok(['light','dark'].includes(changedTheme));
+  assert.notEqual(changedTheme, originalTheme, 'Theme control must change the active color system');
+  await page.locator('#theme-toggle').click();
 
   await page.reload({waitUntil:'domcontentloaded'});
   assert.equal(await page.locator('[data-growth-window="7"]').getAttribute('aria-pressed'),'true');
