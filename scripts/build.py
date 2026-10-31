@@ -159,6 +159,26 @@ def inline_json(value: object) -> str:
 
 def render(root: Path = ROOT) -> tuple[str, int]:
     payload, values = prepare_catalog(load_catalog(root / "data" / "repos.json"))
+    growth_path = root / "data" / "star-growth.json"
+    if growth_path.exists():
+        growth = json.loads(growth_path.read_text(encoding="utf-8"))
+        if growth.get("schema") != 1 or not isinstance(growth.get("records"), dict):
+            raise BuildError("Invalid Star growth data")
+        for record in payload["records"]:
+            metric = growth["records"].get(record["name"])
+            if not metric:
+                continue
+            if type(metric.get("stars")) is not int or metric["stars"] < 0:
+                raise BuildError("Invalid verified Star count: " + record["name"])
+            record["stars"] = metric["stars"]
+            record["last_refreshed"] = metric["as_of"][:10]
+            value = metric.get("windows", {}).get("7")
+            if value and type(value.get("delta")) is int:
+                record["gain_7d"] = value["delta"]
+        values["STARS"] = f"{sum(record['stars'] for record in payload['records']):,}"
+        values["UPDATED"] = max(record["last_refreshed"] for record in payload["records"])
+        payload["updated"] = values["UPDATED"]
+        values["NEW_COUNT"] = f"{sum(record['first_seen'] == values['UPDATED'] for record in payload['records']):,}"
     source = root / "src"
     template = (source / "index.template.html").read_text(encoding="utf-8")
     present = set(PLACEHOLDER_RE.findall(template))
@@ -166,9 +186,9 @@ def render(root: Path = ROOT) -> tuple[str, int]:
     if missing:
         raise BuildError("Template is missing: " + ", ".join(sorted(missing)))
     styles = "\n\n".join((source / filename).read_text(encoding="utf-8")
-                         for filename in ("radix.css", "styles.css"))
+                         for filename in ("radix.css", "styles.css", "growth.css"))
     scripts = "\n;\n".join((source / filename).read_text(encoding="utf-8")
-                          for filename in ("catalog-core.js", "app.js"))
+                          for filename in ("catalog-core.js", "app.js", "growth-core.js", "growth-app.js"))
     if re.search(r"</style\b", styles, re.I) or re.search(r"</script\b", scripts, re.I):
         raise BuildError("Inline source contains an HTML closing style/script tag")
     values.update(STYLES=styles, SCRIPTS=scripts, DATA=inline_json(payload))
