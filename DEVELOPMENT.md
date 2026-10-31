@@ -22,6 +22,12 @@ python3 -m http.server 8000
 | `src/app.js` | 页面渲染与用户操作 |
 | `data/repos.json` | 仓库记录的唯一数据来源 |
 | `scripts/build.py` | 校验数据并生成 `index.html` |
+| `scripts/collect_stars.py` | 按 UTC 日采集真实 GitHub Star 数量 |
+| `scripts/growth_metrics.py` | 计算真实快照窗口净增，生成历史曲线数据 |
+| `data/star-history/YYYY-MM-DD.json` | 每日 Star 快照，使用稳定仓库 ID |
+| `data/star-growth.json` | 前端读取的历史和涨星指标 |
+| `src/growth-core.js` / `src/growth-app.js` | 排行榜、参考榜、趋势图逻辑 |
+| `.github/workflows/star-growth.yml` | 每日采集并写入仓库 |
 
 修改 `src` 或数据后应重新运行生成命令。不要只手改 `index.html`，否则下次生成会覆盖修改。
 
@@ -34,8 +40,8 @@ python3 -m http.server 8000
 ## 验证
 
 ```sh
-python3 -m unittest discover -s tests -p 'test_build.py' -v
-node --test tests/catalog-core.test.cjs
+python3 -m unittest discover -s tests -p 'test*.py' -v
+node --test tests/*.test.cjs
 python3 scripts/build.py --check
 ```
 
@@ -56,4 +62,11 @@ Python 检查覆盖全部数据保留、摘要精简不改变含义、非法地�
 
 外部任务如果继续使用旧模板重写 `index.html`，仍会覆盖本次前端改动。仅在仓库中增加生成器并不能自动修改外部任务。接入前应保留此项维护限制，不将其描述为已完成的自动更新链路。
 
-本交付不包含远程提交、合并或线上部署。上线前应确认仓库写入权限及外部日更任务的模板入口。
+## 涨星榜数据口径与上线现状
+
+- 真实 Star 历史采集已启用：GitHub Actions 工作流 `Daily GitHub Star history` 每天 UTC 06:17 运行，另支持手动触发。每日生成 `data/star-history/YYYY-MM-DD.json`，按 GitHub repository ID 保留更名后的连续性。首次运行已成功，后续按天积累。
+- 24 小时、7 天、30 天正式榜及趋势曲线均需要独立采集的真实历史快照；没有足够窗口跨度就显示数据不足，不推算、不补零。
+- 首页「7 天涨星 / 7 天增长率」在历史不足时展示**清晰标为参考值**的现有目录 `gain_7d`。该值未经本站连续日快照复核，仅收录相对目录最新日期近 3 个自然日更新、且有非零变动的项目；不会写入历史曲线。
+- 由 `GITHUB_TOKEN` 提交的日快照可能不会自动触发 Pages 构建，因此前端优先读取公开 GitHub 主分支中最新的 `data/star-growth.json`，访问异常时回退到 Pages 本地文件。需要重新发布嵌入目录和静态统计时，仍要确保触发 GitHub Pages 部署。
+- 外部 `Daily update` 任务仍需维护者把旧模板发布流程改为更新 `data/repos.json` 后运行 `python3 scripts/growth_metrics.py`、`python3 scripts/build.py`、测试和发布，避免覆盖本次图鉴新版。
+
