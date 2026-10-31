@@ -49,6 +49,18 @@ async function checkPage(browser,base,width,height) {
     null,{timeout:20000});
   assert.ok((await first.count())>0, 'default 7-day ranking should be populated');
   assert.match(await page.locator('#growth-status').innerText(),/官方历史新增|实测净涨星/);
+  const searchLabel = await page.locator('.growth-filters-row label:first-child > span').boundingBox();
+  assert.ok(searchLabel && searchLabel.height <= 23, 'Search label should remain on one line');
+  if (width <= 620) {
+    const cssRatioLabel = await page.locator('.growth-rate').first()
+      .evaluate(el => getComputedStyle(el, '::before').content);
+    assert.match(cssRatioLabel, /新增占比/, 'Official growth shares must not be mislabeled as net growth');
+    const tabs = await page.locator('.growth-windows button').evaluateAll(buttons =>
+      buttons.map(b => ({top: Math.round(b.getBoundingClientRect().top), width: Math.round(b.getBoundingClientRect().width)})));
+    assert.equal(new Set(tabs.map(t => t.top)).size, 2, 'Five time windows should occupy balanced 3+2 rows');
+    assert.equal(tabs[0].top, tabs[2].top);
+    assert.equal(tabs[3].top, tabs[4].top);
+  }
   await page.locator('#growth').screenshot({path:path.join(screenshots,'growth-'+width+'.png')});
 
   for (const view of ['1','7','30','rate7','rate30']) {
