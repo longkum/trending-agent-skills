@@ -4,13 +4,13 @@
 >
 > 每日追踪 GitHub 趋势榜上的 **AI agent skills** 与 **AI 热门仓库**：新上榜即收录，star 数每日刷新，附中英双语主页概括。
 
-**2026 repos tracked**, Skills 1279, AI 747, Total stars 34,764,597, Updated 2026-11-10
+**2027 repos tracked**, Skills 1280, AI 747, Total stars 34,767,357, Updated 2026-11-10
 
 📖 **Live catalog / 在线图鉴**: https://longkum.github.io/trending-agent-skills/
 
 Raw data: [`data/repos.json`](data/repos.json)
 
-## Skills (1279)
+## Skills (1280)
 
 | Repository | ★ Stars | Created | Summary |
 |---|---:|---|---|
@@ -598,6 +598,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [aiwithremy/claude-skills-llm-council](https://github.com/aiwithremy/claude-skills-llm-council) | 2,769 | 2026-04-25 | LLM Council — a Claude Code skill that runs your decisions through 5 AI advisors with peer review<br>LLM Council — a Claude Code skill that runs your decisions through 5 AI advisors with peer review |
 | [sheeki03/tirith](https://github.com/sheeki03/tirith) | 2,768 | 2026-02-02 | Terminal security for developers and AI agents. Intercepts homograph URLs, pipe-to-shell, ANSI injection, obfuscated payloads, data exfiltration, and malicious AI skills/configs before they execute.<br>Terminal security for developers and AI agents. Intercepts homograph URLs, pipe-to-shell, ANSI injection, obfuscated payloads, data exfiltration, and malicious AI skills/configs before they execute. |
 | [rohitg00/awesome-claude-code-toolkit](https://github.com/rohitg00/awesome-claude-code-toolkit) | 2,760 | 2026-02-04 | The most comprehensive toolkit for Claude Code -- 135 agents, 35 curated skills, 42 commands, 176+ plugins, 20 hooks, 15 rules, 7 templates, 14 MCP configs, 26 companion apps, 52 ecosystem entries, and more.<br>The most comprehensive toolkit for Claude Code -- 135 agents, 35 curated skills, 42 commands, 176+ plugins, 20 hooks, 15 rules, 7 templates, 14 MCP configs, 26 companion apps, 52 ecosystem entries, and more. |
+| [janestreet/agent_skills](https://github.com/janestreet/agent_skills) | 2,760 | 2026-11-03 | Agent skills from Jane Street: currently a single socratic-tutor skill that turns an LLM into a strict Socratic personal tutor — one question at a time, with diagnostics, leveled skill maps and spaced review.<br>Jane Street 官方出的 agent skills 合集：目前只有一个 socratic-tutor，把 LLM 变成严格的苏格拉底式私教，一次一问、带诊断、分级和间隔复习，教你学任何话题。 |
 | [heshengtao/super-agent-party](https://github.com/heshengtao/super-agent-party) | 2,754 | 2025-03-08 | ⭐ All-in-one AI companion! Super Agent Party = Self hosted neuro sama + openclaw! ⭐ 全能AI伴侣！超级智能体派对 = 自托管neuro sama + openclaw!<br>⭐ All-in-one AI companion! Super Agent Party = Self hosted neuro sama + openclaw! ⭐ 全能AI伴侣！超级智能体派对 = 自托管neuro sama + openclaw! |
 | [Vincentwei1021/anything2explainer](https://github.com/Vincentwei1021/anything2explainer) | 2,752 | 2026-09-08 | Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video with TTS voiceover, subtitles and a chapter progress bar. Chinese or English; every frame drawn in code with Remotion.<br>Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-graphics explainer video with TTS voiceover, subtitles and a chapter progress bar. Chinese or English; every frame drawn in code with Remotion. |
 | [chengyi-ai/native-subtitle-quote-image](https://github.com/chengyi-ai/native-subtitle-quote-image) | 2,740 | 2026-08-16 | 保留视频内嵌字幕，精确取帧并生成 3:4 社交长图的 Agent Skill<br>保留视频内嵌字幕，精确取帧并生成 3:4 社交长图的 Agent Skill |

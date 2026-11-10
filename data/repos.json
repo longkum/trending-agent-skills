@@ -19756,6 +19756,20 @@
     "track": "skills",
     "url": "https://github.com/jamubc/gemini-mcp-tool"
   },
+  "janestreet/agent_skills": {
+    "category": "skills",
+    "created_at": "2026-11-03",
+    "description": "Agent skills",
+    "first_seen": "2026-11-10",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-10",
+    "stars": 2760,
+    "summary": "Jane Street 官方出的 agent skills 合集：目前只有一个 socratic-tutor，把 LLM 变成严格的苏格拉底式私教，一次一问、带诊断、分级和间隔复习，教你学任何话题。",
+    "summary_en": "Agent skills from Jane Street: currently a single socratic-tutor skill that turns an LLM into a strict Socratic personal tutor — one question at a time, with diagnostics, leveled skill maps and spaced review.",
+    "summary_v": 2,
+    "track": "skills",
+    "url": "https://github.com/janestreet/agent_skills"
+  },
   "jangviktor-web/nihaixia": {
     "category": "models",
     "created_at": "2026-04-14",
