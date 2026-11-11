@@ -171,6 +171,7 @@
     document.querySelector('[data-tab-count="skills"]').textContent = number.format(groups.skills.length);
     document.querySelector('[data-tab-count="ai"]').textContent = number.format(groups.ai.length);
     tabs.forEach(function (button) { button.setAttribute('aria-pressed', String(button.dataset.track === state.track)); });
+    sort.value = state.sort;
     ['skills', 'ai'].forEach(function (track) {
       var section = document.getElementById(track);
       var list = document.getElementById(track + '-list');
@@ -186,7 +187,13 @@
       groups[track].slice(start, start + PAGE_SIZE).forEach(function (record, index) { fragment.append(makeRow(record, start + index + 1)); });
       list.append(fragment);
       document.getElementById(track + '-count').textContent = number.format(groups[track].length) + ' 个仓库';
-      section.querySelector('[data-date-heading]').textContent = state.sort === 'seen' ? '入库日期' : '创建日期';
+      var dateButton = section.querySelector('[data-date-heading]');
+      dateButton.textContent = state.sort === 'seen' ? '入库日期' : '创建日期';
+      dateButton.dataset.sort = state.sort === 'seen' ? 'seen' : 'created';
+      dateButton.setAttribute('aria-label', state.sort === 'seen' ? '按入库日期排序' : '按创建日期排序');
+      section.querySelectorAll('.col-sort').forEach(function (button) {
+        button.classList.toggle('active', button.dataset.sort === state.sort);
+      });
       var jump = section.querySelector('.section-jump');
       if (track === 'skills') jump.hidden = state.track !== 'all' || !groups.ai.length;
       makePagination(track, groups[track].length, page);
@@ -339,6 +346,16 @@
     state.sort = sort.value;
     resetPages();
     render('push', '');
+  });
+  document.querySelectorAll('.col-sort').forEach(function (button) {
+    button.addEventListener('click', function () {
+      clearTimeout(pendingSearch);
+      pendingSearch = null;
+      state.q = input.value.trim();
+      state.sort = button.dataset.sort;
+      resetPages();
+      render('push', '');
+    });
   });
   categorySelect.addEventListener('change', function () {
     clearTimeout(pendingSearch);
