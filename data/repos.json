@@ -18780,6 +18780,12 @@
     "summary": "面向手机、可穿戴设备、智能家居、机器人等微型设备的自动化基础模型：2-bit 量化、仅 8–29 MB，支持工具调用、语音识别、结构化抽取与向量嵌入。",
     "summary_en": "Automation foundation model for tiny devices: 2-bit, 8-29 MB, tool calls, ASR, structured extraction and embeddings on phones, wearables, smart homes, robots, cars and microcontrollers.",
     "summary_v": 2,
+    "tags": [
+      "on-device-ai",
+      "edge-ai",
+      "foundation-model",
+      "tool-calling"
+    ],
     "track": "skills",
     "url": "https://github.com/cactus-compute/needle"
   },
