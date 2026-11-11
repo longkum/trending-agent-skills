@@ -96,6 +96,13 @@
     var summary = element('p', 'repo-summary' + (record.summary ? '' : ' missing'), record.summary || '仓库尚未提供简介');
     summary.lang = textLanguage(record.summary);
     main.append(summary);
+    if (Array.isArray(record.tags) && record.tags.length) {
+      var tags = element('p', 'repo-tags');
+      record.tags.forEach(function (tag) {
+        tags.append(element('span', 'repo-tag', tag));
+      });
+      main.append(tags);
+    }
     var details = element('button', 'row-detail', '查看详情');
     details.type = 'button';
     details.dataset.detail = record.name;

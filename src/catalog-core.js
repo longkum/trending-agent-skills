@@ -71,7 +71,7 @@
         summary: summary || description || english,
         summary_en: english,
         description: description,
-        searchText: searchable([record.name, summary, description, english].join(' '))
+        searchText: searchable([record.name, summary, description, english, (record.tags || []).join(' ')].join(' '))
       });
     });
   }

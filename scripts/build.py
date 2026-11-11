@@ -108,9 +108,13 @@ def prepare_catalog(source: object) -> tuple[dict, dict]:
         gain_7d = item.get("gain_7d", 0)
         if isinstance(gain_7d, bool) or not isinstance(gain_7d, int):
             raise BuildError(f"{name}: gain_7d must be an integer")
+        tags = item.get("tags", [])
+        if (not isinstance(tags, list) or len(tags) > 5
+                or any(not isinstance(t, str) or not t or t != t.lower() or " " in t for t in tags)):
+            raise BuildError(f"{name}: tags must be a list of at most 5 lowercase strings without spaces")
         record = {"name": name, "url": validate_repo_url(name, item.get("url")),
                   "track": track, "stars": stars, "category": category,
-                  "gain_7d": gain_7d}
+                  "gain_7d": gain_7d, "tags": tags}
         for field in DATE_FIELDS:
             value = item.get(field)
             if not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
