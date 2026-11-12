@@ -37092,6 +37092,13 @@
     "summary": "OpenAI 官方的 Codex 安全扫描 CLI 与 TypeScript SDK，可在 Codex、终端或 CI 中扫描代码库、验证漏洞并生成修复补丁，还能起草 SECURITY.md 与导出威胁模型。",
     "summary_en": "OpenAI official Codex Security CLI and TypeScript SDK for finding, validating, and fixing code vulnerabilities — usable in Codex, from the terminal, or in CI, with patch generation, SECURITY.md drafting, and threat-model export.",
     "summary_v": 2,
+    "tags": [
+      "code-scanning",
+      "ai-security",
+      "codex",
+      "vulnerability-scanning",
+      "devsecops"
+    ],
     "topics": [
       "ai-security",
       "application-security",
