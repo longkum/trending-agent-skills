@@ -13512,6 +13512,27 @@
     "track": "ai",
     "url": "https://github.com/Windy3f3f3f3f/how-claude-code-works"
   },
+  "WoYun520/gif-factory": {
+    "category": "design",
+    "created_at": "2026-11-05",
+    "description": "GIF 工厂：按风格制作像素、人物与宠物、粘土吉祥物、光栅卡与动态海报的 GIF Skill。",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 1631,
+    "summary": "给 Codex 用的 GIF 制作 Skill 合集：按风格做像素、人物与宠物、粘土吉祥物表情包，还能做光栅变画卡、动态海报、动态签名、电影片头与动态绘本，给一张图或一段文字就能出图。",
+    "summary_en": "A Codex skill collection for making GIFs: pixel, illustrated, photo people/pet and clay-mascot stickers, plus lenticular cards, animated posters, dynamic signatures, cinematic titles and storybooks — feed it an image or a prompt and it produces the GIF.",
+    "summary_v": 2,
+    "tags": [
+      "gif",
+      "pixel-art",
+      "sticker",
+      "animated-poster",
+      "lenticular-card"
+    ],
+    "track": "skills",
+    "url": "https://github.com/WoYun520/gif-factory"
+  },
   "WooooDyy/LLM-Agent-Paper-List": {
     "category": "learn",
     "created_at": "2023-09-12",

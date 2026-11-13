@@ -4,13 +4,13 @@
 >
 > 每日追踪 GitHub 趋势榜上的 **AI agent skills** 与 **AI 热门仓库**：新上榜即收录，star 数每日刷新，附中英双语主页概括。
 
-**2028 repos tracked**, Skills 1280, AI 748, Total stars 34,832,892, Updated 2026-11-12
+**2029 repos tracked**, Skills 1281, AI 748, Total stars 34,834,523, Updated 2026-11-13
 
 📖 **Live catalog / 在线图鉴**: https://longkum.github.io/trending-agent-skills/
 
 Raw data: [`data/repos.json`](data/repos.json)
 
-## Skills (1280)
+## Skills (1281)
 
 | Repository | ★ Stars | Created | Summary |
 |---|---:|---|---|
@@ -773,6 +773,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [mukul975/cve-mcp-server](https://github.com/mukul975/cve-mcp-server) | 1,639 | 2026-04-14 | A production-grade MCP server giving Claude 27 security-intelligence tools across 21 APIs — CVE lookup, EPSS scoring, CISA KEV, MITRE ATT&CK, Shodan, VirusTotal, and more.<br>生产级 MCP 服务器，为 Claude 提供横跨 21 个 API 的 27 个安全情报工具，包括 CVE 查询、EPSS 评分、CISA KEV、MITRE ATT&CK、Shodan、VirusTotal 等，面向安全分析人员。 |
 | [Unclecheng-li/AI_Animation](https://github.com/Unclecheng-li/AI_Animation) | 1,637 | 2026-04-11 | A collection of AI prompts for generating cool HTML animation pages, covering animation effects, 3D visualisation, PPT-style presentations, UI beautification, and more.<br>整理了用于生成炫酷 HTML 动画网页的 AI Prompt，涵盖动画效果、3D 可视化、PPT 风格演示、UI 美化等类别，面向想用 AI 生成动画网页的创作者。 |
 | [activeloopai/hivemind](https://github.com/activeloopai/hivemind) | 1,635 | 2026-04-03 | Turns your agent traces into reusable skills across agents, so experience gained by one agent can be reused by others.<br>把智能体的运行轨迹转化为可跨智能体复用的 Skill，解决经验与记忆难以沉淀复用的问题，面向多智能体协作的开发者。 |
+| [WoYun520/gif-factory](https://github.com/WoYun520/gif-factory) | 1,631 | 2026-11-05 | A Codex skill collection for making GIFs: pixel, illustrated, photo people/pet and clay-mascot stickers, plus lenticular cards, animated posters, dynamic signatures, cinematic titles and storybooks — feed it an image or a prompt and it produces the GIF.<br>给 Codex 用的 GIF 制作 Skill 合集：按风格做像素、人物与宠物、粘土吉祥物表情包，还能做光栅变画卡、动态海报、动态签名、电影片头与动态绘本，给一张图或一段文字就能出图。 |
 | [EtienneLescot/n8n-as-code](https://github.com/EtienneLescot/n8n-as-code) | 1,628 | 2026-01-03 | Gives your AI agent n8n superpowers — 537 nodes with full schemas, 7,700+ templates, Git-like sync, and TypeScript workflows.<br>给 AI 智能体赋予 n8n 超能力：537 个带完整 Schema 的节点、7,700+ 模板、类 Git 同步与 TypeScript 工作流，面向用 n8n 做自动化的开发者。 |
 | [krusemediallc/arcads-claude-code](https://github.com/krusemediallc/arcads-claude-code) | 1,625 | 2026-04-01 | Agent skills, a prompting library, and a Cursor/Claude workspace for the Arcads external API.<br>Arcads 外部 API 的配套内容：Agent Skill、提示词库与 Cursor/Claude 工作区，面向接入 Arcads API 的开发者。 |
 | [Kaelio/ktx](https://github.com/Kaelio/ktx) | 1,624 | 2026-05-10 | An executable context layer for data and analytics agents that lets Claude Code, Codex, and other AI agents query analytical databases accurately with full company context.<br>面向数据与分析智能体的可执行上下文层，让 Claude Code、Codex 等 AI 智能体带着完整的公司上下文准确查询分析数据库，面向数据团队与分析师。 |
