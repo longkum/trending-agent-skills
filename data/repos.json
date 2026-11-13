@@ -1111,6 +1111,27 @@
     "track": "skills",
     "url": "https://github.com/Agents365-ai/drawio-skill"
   },
+  "Agents365-ai/video-podcast-maker": {
+    "category": "media",
+    "created_at": "2026-02-16",
+    "description": "Topic → 4K narrated video for coding agents. v5.3.0: local TTS (edge free + azure, no external engine), manifest-based Asset Engine, Remotion composition, cost-gated AI generation, Bilibili/YouTube/Xiaohongshu/Douyin/WeChat Channels",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 1721,
+    "summary": "给 coding agent 用的播客视频生成器：输入话题出 4K 旁白视频，本地 TTS、Remotion 合成，支持 B 站、YouTube、视频号等多平台。",
+    "summary_en": "Topic → 4K narrated video for coding agents: local TTS, manifest-based asset engine and Remotion composition, publishing to Bilibili, YouTube, Xiaohongshu, Douyin and WeChat Channels.",
+    "summary_v": 2,
+    "tags": [
+      "ai-video",
+      "remotion",
+      "text-to-speech",
+      "idea-to-video",
+      "bilibili"
+    ],
+    "track": "skills",
+    "url": "https://github.com/Agents365-ai/video-podcast-maker"
+  },
   "AgriciDaniel/banana-claude": {
     "category": "design",
     "created_at": "2026-03-13",
@@ -5632,6 +5653,25 @@
     "track": "skills",
     "url": "https://github.com/HKUDS/OpenSpace"
   },
+  "HKUDS/ViMax": {
+    "category": "media",
+    "created_at": "2025-03-30",
+    "description": "\"ViMax: Agentic Video Generation (Director, Screenwriter, Producer, and Video Generator All-in-One)\"",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 12911,
+    "summary": "港大出的 agent 视频生成系统：导演、编剧、制片、视频生成四个 agent 一体，自动完成从创意到成片的视频制作。",
+    "summary_en": "HKU's agentic video generation system: Director, Screenwriter, Producer and Video Generator agents all in one, automating video production from idea to finished film.",
+    "summary_v": 2,
+    "tags": [
+      "agentic-aigc",
+      "video-generation",
+      "ai-filmmaking"
+    ],
+    "track": "ai",
+    "url": "https://github.com/HKUDS/ViMax"
+  },
   "HKUDS/Vibe-Trading": {
     "category": "finance",
     "created_at": "2026-04-01",
@@ -6607,6 +6647,27 @@
     ],
     "track": "skills",
     "url": "https://github.com/JayPokale/Chisle"
+  },
+  "Jaycheng1103/chatgpt-video-editing-skills": {
+    "category": "media",
+    "created_at": "2026-07-20",
+    "description": "用 ChatGPT／Codex 安裝 AI 剪輯環境，並依八大步驟完成可驗證的短影音剪輯。",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 622,
+    "summary": "给 ChatGPT/Codex 用的繁体中文剪辑 skills：帮你安全装好 AI 剪辑环境，再按八大步骤把自有素材剪成直式短影音，全程以实际输出与 QA 证据为准。",
+    "summary_en": "Traditional Chinese skills for ChatGPT/Codex to set up an AI editing environment and cut your own footage into vertical short videos in eight verified steps, with real output and QA evidence — never claiming unfinished work as done.",
+    "summary_v": 2,
+    "tags": [
+      "video-editing",
+      "agent-skills",
+      "ffmpeg",
+      "elevenlabs",
+      "hyperframes"
+    ],
+    "track": "skills",
+    "url": "https://github.com/Jaycheng1103/chatgpt-video-editing-skills"
   },
   "Jeffallan/claude-skills": {
     "category": "skills",
@@ -9632,6 +9693,27 @@
     "track": "skills",
     "url": "https://github.com/NyxTides/ppt-image-first"
   },
+  "OSideMedia/higgsfield-ai-prompt-skill": {
+    "category": "skills",
+    "created_at": "2026-03-08",
+    "description": "Claude AI skill for cinematic Higgsfield AI prompts — 32 sub-skills covering Seedance 2.5 (omni-reference, video edit + extend) and 2.0, the Hell Grind feature-film pipeline, an acting system, Cinema Studio 2.5/3.0/3.5, MCSLA, Soul ID consistency, Kling 3.0 Motion Control, the DISCIPLINE framework, and 18 templates.",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 909,
+    "summary": "给 Claude 用的 Higgsfield 电影感提示词 skill：32 个子 skill，覆盖 Seedance 2.5/2.0、Kling 3.0 运镜控制、角色一致性与 18 个模板。",
+    "summary_en": "A Claude AI skill for cinematic Higgsfield prompts: 32 sub-skills covering Seedance 2.5 and 2.0, Kling 3.0 motion control, Soul ID consistency and 18 templates.",
+    "summary_v": 2,
+    "tags": [
+      "ai-cinema",
+      "ai-filmmaking",
+      "claude-code",
+      "character-acting",
+      "cinema-studio"
+    ],
+    "track": "skills",
+    "url": "https://github.com/OSideMedia/higgsfield-ai-prompt-skill"
+  },
   "Observal/Observal": {
     "category": "coding",
     "created_at": "2026-03-30",
@@ -9975,6 +10057,27 @@
     ],
     "track": "ai",
     "url": "https://github.com/OpenHands/OpenHands"
+  },
+  "OpenMontageInc/OpenMontage": {
+    "category": "assistant",
+    "created_at": "2026-03-29",
+    "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 80089,
+    "summary": "开源 agent 视频制作系统：12 条制作产线、100+ 工具、700+ agent skill 与制作知识文件，把 AI 编程助手变成完整视频制作工作室。",
+    "summary_en": "The first open-source agentic video production system: 12 production pipelines, 100+ tools and 700+ agent skills and production-knowledge files that turn an AI coding assistant into a full video production studio.",
+    "summary_v": 2,
+    "tags": [
+      "agentic-ai",
+      "ffmpeg",
+      "elevenlabs",
+      "copilot",
+      "cursor"
+    ],
+    "track": "skills",
+    "url": "https://github.com/OpenMontageInc/OpenMontage"
   },
   "OpenOSINT/OpenOSINT": {
     "category": "security",
@@ -10740,6 +10843,27 @@
     ],
     "track": "skills",
     "url": "https://github.com/PrefectHQ/fastmcp"
+  },
+  "PurpleDoubleD/locally-uncensored": {
+    "category": "assistant",
+    "created_at": "2026-03-24",
+    "description": "The all-in-one local AI studio for your desktop: chat, image and video generation and a coding agent in one free, open source app. Windows and Linux. No Docker, no terminal, no cloud required.",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 4119,
+    "summary": "桌面一体本地 AI 工作室：聊天、图片与视频生成、coding agent 全在一个免费开源应用里，Windows/Linux，不用 Docker、终端或云端。",
+    "summary_en": "An all-in-one local AI studio for the desktop: chat, image and video generation and a coding agent in one free, open-source app for Windows and Linux — no Docker, terminal or cloud required.",
+    "summary_v": 2,
+    "tags": [
+      "ai-studio",
+      "coding-agent",
+      "desktop-app",
+      "image-generation",
+      "flux"
+    ],
+    "track": "ai",
+    "url": "https://github.com/PurpleDoubleD/locally-uncensored"
   },
   "Pythagora-io/gpt-pilot": {
     "category": "coding",
@@ -16409,6 +16533,26 @@
     ],
     "track": "skills",
     "url": "https://github.com/android/skills"
+  },
+  "andyhuo520/digital-human-koubo": {
+    "category": "media",
+    "created_at": "2026-10-26",
+    "description": "AI digital-human talking-head videos from one photo: Renoise MCP generation + 5 editing styles + 48 creator-grade packaging components. Agent skill for Claude Code / Codex / OpenClaw / WorkBuddy …",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 1957,
+    "summary": "一张照片加一句话就能出 AI 数字人口播视频：脚本、口型同步的 AI 主播、声音清理、字幕与博主级包装，全由 AI agent 自动完成。",
+    "summary_en": "One photo plus one sentence → a finished talking-head video with a digital human: script, lip-synced AI presenter, voice clean-up, captions and pro-YouTuber-style packaging, fully automated by an AI agent.",
+    "summary_v": 2,
+    "tags": [
+      "digital-human",
+      "talking-head",
+      "lip-sync",
+      "ai-presenter"
+    ],
+    "track": "skills",
+    "url": "https://github.com/andyhuo520/digital-human-koubo"
   },
   "anomalyco/hex": {
     "category": "media",
@@ -22636,6 +22780,26 @@
     "track": "skills",
     "url": "https://github.com/devopness/devopness"
   },
+  "dexhunter/seedance2-skill": {
+    "category": "media",
+    "created_at": "2026-02-11",
+    "description": "skill to create best prompts for generating videos with seedance2.0",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 4471,
+    "summary": "给即梦 Seedance 2.0 写视频生成提示词的 skill，覆盖镜头、运镜与风格写法，适用于 Claude Code、Cursor 等 agent。",
+    "summary_en": "An agent skill for writing effective video-generation prompts for ByteDance's Seedance 2.0, covering shots, camera moves and styles; works with Claude Code, Cursor, Cline and other agents.",
+    "summary_v": 2,
+    "tags": [
+      "seedance-2",
+      "video-prompt",
+      "seedance",
+      "prompt"
+    ],
+    "track": "skills",
+    "url": "https://github.com/dexhunter/seedance2-skill"
+  },
   "dgreenheck/webgpu-claude-skill": {
     "category": "skills",
     "created_at": "2026-01-23",
@@ -22698,6 +22862,27 @@
     "topics": [],
     "track": "skills",
     "url": "https://github.com/diet103/claude-code-infrastructure-showcase"
+  },
+  "digitalsamba/claude-code-video-toolkit": {
+    "category": "media",
+    "created_at": "2025-12-09",
+    "description": "Make videos with Claude Code: script, AI voiceover, music, video clips and render, on open-source models that cost cents",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 2540,
+    "summary": "用 Claude Code 做视频的工具包：写脚本、AI 配音、配乐、剪辑、渲染一条龙，走开源模型，成本几分钱。",
+    "summary_en": "Make videos with Claude Code: script, AI voiceover, music, video clips and render, on open-source models that cost cents.",
+    "summary_v": 2,
+    "tags": [
+      "ai-video-generator",
+      "claude-code",
+      "elevenlabs",
+      "ltx-video",
+      "agent-skills"
+    ],
+    "track": "skills",
+    "url": "https://github.com/digitalsamba/claude-code-video-toolkit"
   },
   "ding113/claude-code-hub": {
     "category": "other",
@@ -44160,6 +44345,27 @@
     "track": "skills",
     "url": "https://github.com/tobihagemann/turbo"
   },
+  "tonhowtf/omniget": {
+    "category": "mcp",
+    "created_at": "2026-02-11",
+    "description": "Free, open source video downloader for Windows, macOS and Linux that AI agents can drive. Downloads from YouTube, Instagram, TikTok, X, Reddit, torrents and the sites yt-dlp supports. Its MCP server lets Claude Code, Cursor and Codex queue downloads, and it runs Claude Code, Codex, Gemini CLI and Ollama as agents.",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 14387,
+    "summary": "AI agent 可驱动的免费开源视频下载器：从 YouTube、Instagram、TikTok、X 等站下载视频，MCP 服务让 Claude Code、Cursor、Codex 排队下载，还能直接跑 AI agent。",
+    "summary_en": "A free, open-source video downloader that AI agents can drive: downloads from YouTube, Instagram, TikTok, X and more, with an MCP server letting Claude Code, Cursor and Codex queue downloads, and it can run AI agents itself.",
+    "summary_v": 2,
+    "tags": [
+      "video-downloader",
+      "mcp-server",
+      "claude-code",
+      "yt-dlp",
+      "media-downloader"
+    ],
+    "track": "skills",
+    "url": "https://github.com/tonhowtf/omniget"
+  },
   "toon-format/toon": {
     "category": "data",
     "created_at": "2025-10-22",
@@ -46590,6 +46796,25 @@
     ],
     "track": "skills",
     "url": "https://github.com/weave-os/router"
+  },
+  "webadderallorg/Recordly": {
+    "category": "media",
+    "created_at": "2026-03-12",
+    "description": "Create polished demo videos without editing skills. Mac/Windows/Linux",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 36622,
+    "summary": "无剪辑基础也能录出 polished 产品演示视频的开源录屏工具，支持 Mac/Windows/Linux。",
+    "summary_en": "An open-source screen recorder for creating polished demo videos without editing skills, for Mac, Windows and Linux.",
+    "summary_v": 2,
+    "tags": [
+      "screen-recorder",
+      "screen-studio",
+      "electron"
+    ],
+    "track": "skills",
+    "url": "https://github.com/webadderallorg/Recordly"
   },
   "webiny/webiny-js": {
     "category": "mcp",
