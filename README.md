@@ -4,13 +4,13 @@
 >
 > 每日追踪 GitHub 趋势榜上的 **AI agent skills** 与 **AI 热门仓库**：新上榜即收录，star 数每日刷新，附中英双语主页概括。
 
-**2032 repos tracked**, Skills 1282, AI 750, Total stars 34,875,290, Updated 2026-11-13
+**2033 repos tracked**, Skills 1283, AI 750, Total stars 34,882,924, Updated 2026-11-13
 
 📖 **Live catalog / 在线图鉴**: https://longkum.github.io/trending-agent-skills/
 
 Raw data: [`data/repos.json`](data/repos.json)
 
-## Skills (1282)
+## Skills (1283)
 
 | Repository | ★ Stars | Created | Summary |
 |---|---:|---|---|
@@ -315,6 +315,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [PleasePrompto/notebooklm-skill](https://github.com/PleasePrompto/notebooklm-skill) | 7,794 | 2025-10-19 | A skill that lets Claude Code communicate directly with your Google NotebookLM notebooks: query uploaded documents and get source-grounded, citation-backed answers from Gemini, with browser automation, library management and persistent authentication.<br>让 Claude Code 直接与 Google NotebookLM 笔记本对话的技能，可查询已上传文档并获得基于来源、带引用的 Gemini 回答，支持浏览器自动化、资料库管理与持久登录，面向用 NotebookLM 做知识管理的用户。 |
 | [XiaoDuoYa/codex-with-chatgpt](https://github.com/XiaoDuoYa/codex-with-chatgpt) | 7,701 | 2026-08-28 | Use ChatGPT as the planning brain while keeping the Codex harness for execution — ChatGPT thinks, Codex works.<br>让 ChatGPT 当规划大脑、Codex 当执行骨架的组合用法：ChatGPT 负责思考规划，Codex 负责实际干活，适合同时用两者的开发者。 |
 | [xerrors/Yuxi](https://github.com/xerrors/Yuxi) | 7,660 | 2024-07-05 | A self-hosted, multi-tenant knowledge agent platform unifying RAG, knowledge graphs, multi-agent workflows, MCP/Skills, sandboxing, and permission management.<br>可私有部署的多租户知识智能体平台，统一 RAG、知识图谱、多智能体、MCP/Skills、沙盒与权限管理，面向需要在内网搭建企业知识问答与智能体系统的团队。 |
+| [JuneYaooo/rea-video](https://github.com/JuneYaooo/rea-video) | 7,634 | 2026-10-29 | Reverse-engineers any video shot by shot: tells whether each shot was filmed, AI-generated or coded, and outputs a remake plan in the open VIDEO.md format — so you can recreate how a viral video was shot, moved and cut.<br>逆向拆解任意视频的工具：逐镜头判断是实拍、AI 生成还是代码制作，并按 VIDEO.md 格式输出拆解与复刻方案，帮你把爆款视频的拍法、运镜和剪辑复刻出来。 |
 | [Cocoon-AI/architecture-diagram-generator](https://github.com/Cocoon-AI/architecture-diagram-generator) | 7,585 | 2025-12-22 | A Claude AI skill that generates beautiful dark-themed system architecture diagrams as standalone HTML/SVG files.<br>生成深色主题系统架构图的 Claude AI 技能，输出独立的 HTML/SVG 文件，适合需要快速出架构图的开发者和架构师。 |
 | [refly-ai/refly](https://github.com/refly-ai/refly) | 7,553 | 2024-02-19 | The first open-source agent skills builder: define skills by vibe workflow and run them on Claude Code, Cursor, Codex and more, plus Clawdbot, Slack/Lark bots, and APIs for Lovable.<br>首个开源 Agent Skills 构建器：按 vibe 工作流定义技能，可跑在 Claude Code、Cursor、Codex 等工具上，还能做 Clawdbot、Slack/Lark 机器人与 Lovable 的 API，面向想把技能当基础设施搭建的开发者。 |
 | [homeassistant-ai/ha-mcp](https://github.com/homeassistant-ai/ha-mcp) | 7,472 | 2025-09-14 | Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.<br>用 Claude、ChatGPT 等 AI 助手配置与自动化 Home Assistant 智能家居。 |

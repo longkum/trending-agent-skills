@@ -6915,6 +6915,27 @@
     "track": "skills",
     "url": "https://github.com/JuneYaooo/nihaisha-nishi-tcm"
   },
+  "JuneYaooo/rea-video": {
+    "category": "media",
+    "created_at": "2026-10-29",
+    "description": "Reverse-engineer any video, shot by shot: filmed, AI-generated or coded, and how to remake it. Breakdowns in the open VIDEO.md format. 逆向一切视频，逐个镜头看是拍的、AI 生成的还是代码做的，再告诉你怎么复刻；拆解结果按 VIDEO.md 格式输出。",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 7634,
+    "summary": "逆向拆解任意视频的工具：逐镜头判断是实拍、AI 生成还是代码制作，并按 VIDEO.md 格式输出拆解与复刻方案，帮你把爆款视频的拍法、运镜和剪辑复刻出来。",
+    "summary_en": "Reverse-engineers any video shot by shot: tells whether each shot was filmed, AI-generated or coded, and outputs a remake plan in the open VIDEO.md format — so you can recreate how a viral video was shot, moved and cut.",
+    "summary_v": 2,
+    "tags": [
+      "video-breakdown",
+      "reverse-engineering",
+      "ai-video",
+      "shot-detection",
+      "video-generation"
+    ],
+    "track": "skills",
+    "url": "https://github.com/JuneYaooo/rea-video"
+  },
   "JungHoonGhae/tossinvest-cli": {
     "category": "other",
     "created_at": "2026-03-11",
