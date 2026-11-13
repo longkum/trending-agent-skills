@@ -45119,6 +45119,27 @@
     "track": "skills",
     "url": "https://github.com/vibe-motion/skills"
   },
+  "vibe-motion/sound": {
+    "category": "skills",
+    "created_at": "2026-10-28",
+    "description": "Studio-grade sound effects for agents: search Pixabay, Freesound, Mixkit and Kenney, ranked by human feedback",
+    "first_seen": "2026-11-13",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-13",
+    "stars": 564,
+    "summary": "给 Claude Code 用的视频音效选材 Skill：从 Freesound 搜索下载真实音效，按下载量、评分、时长与许可证帮 Agent 给画面挑声音，适用于转场、按钮点击、纸张滑动等场景。",
+    "summary_en": "A Claude Code skill for picking video sound effects: searches and downloads real SFX from Freesound, ranked by downloads, ratings, duration and license, so an agent can match sounds to on-screen actions like transitions, button clicks and paper slides.",
+    "summary_v": 2,
+    "tags": [
+      "sound-effects",
+      "freesound",
+      "sfx",
+      "video",
+      "claude-code"
+    ],
+    "track": "skills",
+    "url": "https://github.com/vibe-motion/sound"
+  },
   "vibeeval/vibecosystem": {
     "category": "agent",
     "created_at": "2026-03-14",

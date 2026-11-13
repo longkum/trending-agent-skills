@@ -4,13 +4,13 @@
 >
 > 每日追踪 GitHub 趋势榜上的 **AI agent skills** 与 **AI 热门仓库**：新上榜即收录，star 数每日刷新，附中英双语主页概括。
 
-**2029 repos tracked**, Skills 1281, AI 748, Total stars 34,834,523, Updated 2026-11-13
+**2030 repos tracked**, Skills 1282, AI 748, Total stars 34,835,087, Updated 2026-11-13
 
 📖 **Live catalog / 在线图鉴**: https://longkum.github.io/trending-agent-skills/
 
 Raw data: [`data/repos.json`](data/repos.json)
 
-## Skills (1281)
+## Skills (1282)
 
 | Repository | ★ Stars | Created | Summary |
 |---|---:|---|---|
@@ -1142,6 +1142,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [oliver-kriska/claude-elixir-phoenix](https://github.com/oliver-kriska/claude-elixir-phoenix) | 571 | 2026-02-12 | A Claude Code plugin for Elixir/Phoenix/LiveView with 26 specialist agents, Iron Laws enforcement and Tidewave MCP integration — plan with parallel research agents, execute with automatic verification, and review with four-agent parallel audits.<br>Elixir/Phoenix/LiveView 的 Claude Code 插件：26 个专家智能体、Iron Laws 强制执行、Tidewave MCP 集成，支持并行调研规划、自动验证执行与四智能体并行审计，面向 Elixir 开发者。 |
 | [axtonliu/smart-illustrator](https://github.com/axtonliu/smart-illustrator) | 566 | 2026-02-01 | A Claude Code skill for AI-powered article illustrations, with intelligent position detection and a cover learning system.<br>为文章生成 AI 插图的 Claude Code Skill，带智能位置检测与封面学习系统，面向内容创作者。 |
 | [vladikk/modularity](https://github.com/vladikk/modularity) | 566 | 2026-03-28 | A Claude Code plugin for designing modular systems from functional requirements and reviewing codebases for modularity problems with actionable recommendations, based on the Balanced Coupling model.<br>帮助设计模块化系统的 Claude Code 插件：按功能需求设计模块、评审既有代码库的模块化问题并给出可执行的改进建议，基于 Balanced Coupling 模型。 |
+| [vibe-motion/sound](https://github.com/vibe-motion/sound) | 564 | 2026-10-28 | A Claude Code skill for picking video sound effects: searches and downloads real SFX from Freesound, ranked by downloads, ratings, duration and license, so an agent can match sounds to on-screen actions like transitions, button clicks and paper slides.<br>给 Claude Code 用的视频音效选材 Skill：从 Freesound 搜索下载真实音效，按下载量、评分、时长与许可证帮 Agent 给画面挑声音，适用于转场、按钮点击、纸张滑动等场景。 |
 | [karanb192/awesome-claude-skills](https://github.com/karanb192/awesome-claude-skills) | 563 | 2025-10-21 | A curated collection of 50+ verified Awesome Claude Skills for Claude Code, Claude.ai and the API, covering TDD, debugging, Git workflows, document processing and more.<br>50+ 经过验证的 Awesome Claude Skills 精选合集，覆盖 TDD、调试、Git 工作流、文档处理等，面向 Claude Code、Claude.ai 与 API 用户。 |
 | [tzachbon/smart-ralph](https://github.com/tzachbon/smart-ralph) | 563 | 2026-01-11 | A Claude Code plugin for spec-driven development with smart compaction, combining the Ralph Wiggum loop with a structured specification workflow.<br>规格驱动开发的 Claude Code 插件：把 Ralph Wiggum 循环与结构化规格工作流结合，并支持智能压缩，面向想让 AI 按规格自主循环开发的开发者。 |
 | [Yuzzyuk/marketing-os](https://github.com/Yuzzyuk/marketing-os) | 562 | 2026-08-17 | An entire marketing department as one Claude skill: 14 modules including audits scored 0–100, an 18-tactic hook engine, copy graded before you see it, ad diagnosis, GEO, email, launches and pricing; works in Claude, Codex and Cursor.<br>一个 Claude skill 就是一整个营销部门：14 个模块，含 0-100 评分审计、18 战术钩子引擎、预先评分的文案、广告诊断、GEO、邮件、发布与定价，适用于 Claude、Codex 与 Cursor，面向独立开发者与营销人员。 |
