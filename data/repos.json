@@ -9079,6 +9079,27 @@
     "track": "skills",
     "url": "https://github.com/Mintplex-Labs/anything-llm"
   },
+  "Mobirise/Mobirise": {
+    "category": "other",
+    "created_at": "2015-05-15",
+    "description": "Free AI website builder for Windows, Mac and Linux. Release notes and downloads.",
+    "first_seen": "2026-11-15",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-15",
+    "stars": 987,
+    "summary": "免费 AI 网站搭建器：拖拽式做网站，支持 Windows/Mac/Linux，基于 Bootstrap。",
+    "summary_en": "A free AI website builder for Windows, Mac and Linux: drag-and-drop, Bootstrap-based, no code required.",
+    "summary_v": 2,
+    "tags": [
+      "ai-website-builder",
+      "bootstrap",
+      "drag-and-drop",
+      "no-code",
+      "html"
+    ],
+    "track": "ai",
+    "url": "https://github.com/Mobirise/Mobirise"
+  },
   "ModelEngine-Group/nexent": {
     "category": "agent",
     "created_at": "2025-04-28",
@@ -12678,6 +12699,26 @@
     ],
     "track": "skills",
     "url": "https://github.com/TabularisDB/tabularis"
+  },
+  "TaiT-tt/tait-crt-interface-skill": {
+    "category": "design",
+    "created_at": "2026-08-02",
+    "description": "TaiT-CRT-Interface-Skill is a Codex image generation skill that transforms user-uploaded portraits, photographs, or text descriptions into a retro illustration with the feel of an early CRT computer interface.",
+    "first_seen": "2026-11-15",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-15",
+    "stars": 550,
+    "summary": "Codex 图片生成 skill：把用户上传的人像、摄影或文字描述做成带早期 CRT 计算机界面质感的复古插画。",
+    "summary_en": "A Codex image-generation skill that turns user-uploaded portraits, photos or text prompts into retro illustrations with early CRT computer-interface texture.",
+    "summary_v": 2,
+    "tags": [
+      "crt",
+      "retro-illustration",
+      "image-generation",
+      "codex"
+    ],
+    "track": "skills",
+    "url": "https://github.com/TaiT-tt/tait-crt-interface-skill"
   },
   "Taichu-AI/ZDTaichu5.0-9B": {
     "category": "other",
@@ -28439,6 +28480,26 @@
     ],
     "track": "skills",
     "url": "https://github.com/hetpatel-11/Adobe_Premiere_Pro_MCP"
+  },
+  "heydamir/unslop": {
+    "category": "design",
+    "created_at": "2026-10-29",
+    "description": "A Claude skill that turns vibecoded, AI-looking UI into a designed interface",
+    "first_seen": "2026-11-15",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-15",
+    "stars": 16474,
+    "summary": "Claude skill：把 AI 味的 vibe-coded 界面改造成真正设计过的界面，逐帧去 AI 味。",
+    "summary_en": "A Claude skill that turns vibecoded, AI-looking UI into a designed interface — unslopping frame by frame.",
+    "summary_v": 2,
+    "tags": [
+      "ui-design",
+      "anti-slop",
+      "claude-code",
+      "vibecoding"
+    ],
+    "track": "skills",
+    "url": "https://github.com/heydamir/unslop"
   },
   "heygen-com/hyperframes": {
     "category": "media",
@@ -44433,6 +44494,27 @@
     "track": "skills",
     "url": "https://github.com/suekou/mcp-notion-server"
   },
+  "sunchaokun/PPT-Design-Skill": {
+    "category": "design",
+    "created_at": "2026-07-09",
+    "description": "Precision PPT design skill for OpenCode/Claude Code/Codex, with 40,000+ styles, pixel-perfect Build Mode control, AI image generation, and fully editable PPTX. 面向专业演示设计场景，帮助用户从需求分析、视觉方向选择到原生可编辑 PPTX 交付，打造高质量、可持续修改的演示文稿。",
+    "first_seen": "2026-11-15",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-15",
+    "stars": 507,
+    "summary": "精准 PPT 设计 skill：给 OpenCode/Claude Code/Codex 用，4 万+ 样式，像素级排版，原生可编辑的 PPTX 输出。",
+    "summary_en": "A precision PPT design skill for OpenCode, Claude Code and Codex: 40,000+ styles, pixel-perfect layout, and natively editable PPTX output.",
+    "summary_v": 2,
+    "tags": [
+      "ppt",
+      "presentation-design",
+      "claude-code",
+      "dsh-plugin",
+      "codex"
+    ],
+    "track": "skills",
+    "url": "https://github.com/sunchaokun/PPT-Design-Skill"
+  },
   "supabase/agent-skills": {
     "category": "skills",
     "created_at": "2026-01-16",
@@ -50574,6 +50656,27 @@
     ],
     "track": "skills",
     "url": "https://github.com/zhayujie/CowAgent"
+  },
+  "zhayujie/bot-on-anything": {
+    "category": "assistant",
+    "created_at": "2023-02-09",
+    "description": "A large model-based chatbot builder that can quickly integrate AI models (including ChatGPT, Claude, Gemini) into various software applications (such as Telegram, Gmail, Slack, and websites).",
+    "first_seen": "2026-11-15",
+    "gain_7d": 0,
+    "last_refreshed": "2026-11-15",
+    "stars": 4216,
+    "summary": "基于大模型的聊天机器人搭建器，能把 ChatGPT、Claude、Gemini 等模型快速接进 Gmail、Slack、Telegram 等渠道。",
+    "summary_en": "A large-model chatbot builder that quickly integrates AI models (ChatGPT, Claude, Gemini) into Gmail, Slack, Telegram and the web.",
+    "summary_v": 2,
+    "tags": [
+      "chatbot",
+      "chatgpt",
+      "claude",
+      "telegram",
+      "slack"
+    ],
+    "track": "ai",
+    "url": "https://github.com/zhayujie/bot-on-anything"
   },
   "zhkl0228/unidbg": {
     "category": "other",

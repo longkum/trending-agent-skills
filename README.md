@@ -4,13 +4,13 @@
 >
 > 每日追踪 GitHub 趋势榜上的 **AI agent skills** 与 **AI 热门仓库**：新上榜即收录，star 数每日刷新，附中英双语主页概括。
 
-**2047 repos tracked**, Skills 1292, AI 755, Total stars 35,116,375, Updated 2026-11-15
+**2052 repos tracked**, Skills 1295, AI 757, Total stars 35,139,109, Updated 2026-11-15
 
 📖 **Live catalog / 在线图鉴**: https://longkum.github.io/trending-agent-skills/
 
 Raw data: [`data/repos.json`](data/repos.json)
 
-## Skills (1292)
+## Skills (1295)
 
 | Repository | ★ Stars | Created | Summary |
 |---|---:|---|---|
@@ -185,6 +185,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [microsoft/mcp-for-beginners](https://github.com/microsoft/mcp-for-beginners) | 17,624 | 2025-04-04 | Microsoft's open-source curriculum introducing the Model Context Protocol through real-world, cross-language examples in .NET, Java, TypeScript, JavaScript, Rust, and Python, for developers building modular, scalable, and secure AI workflows.<br>微软开源 MCP 入门课程，通过 .NET、Java、TypeScript、JavaScript、Rust 与 Python 的真实跨语言示例讲模型上下文协议，面向想构建模块化、可扩展、安全的 AI 工作流的开发者。 |
 | [composio-community/awesome-codex-skills](https://github.com/composio-community/awesome-codex-skills) | 17,248 | 2026-01-12 | A curated list of practical Codex skills for automating workflows across the Codex CLI and API.<br>精选的实用 Codex skills 清单，用于在 Codex CLI 与 API 上自动化各类工作流。 |
 | [kubesphere/kubesphere](https://github.com/kubesphere/kubesphere) | 17,077 | 2018-04-21 | The container platform tailored for Kubernetes multi-cloud, datacenter, and edge management, for cloud-native operations teams.<br>面向 Kubernetes 多云、数据中心与边缘管理的容器平台，面向云原生运维团队。 |
+| [heydamir/unslop](https://github.com/heydamir/unslop) | 16,474 | 2026-10-29 | A Claude skill that turns vibecoded, AI-looking UI into a designed interface — unslopping frame by frame.<br>Claude skill：把 AI 味的 vibe-coded 界面改造成真正设计过的界面，逐帧去 AI 味。 |
 | [GreyDGL/PentestGPT](https://github.com/GreyDGL/PentestGPT) | 16,313 | 2023-02-27 | An automated penetration testing agentic framework powered by large language models, for security testers.<br>由大语言模型驱动的自动化渗透测试智能体框架，面向安全测试人员。 |
 | [dreammis/social-auto-upload](https://github.com/dreammis/social-auto-upload) | 16,305 | 2023-12-04 | A tool that automatically uploads videos to social media platforms including Douyin, Xiaohongshu, WeChat Channels, TikTok, YouTube, and Bilibili, for video creators and operators.<br>自动上传视频到抖音、小红书、视频号、TikTok、YouTube、Bilibili 等社交媒体的工具，面向视频创作者与运营者。 |
 | [wasp-lang/open-saas](https://github.com/wasp-lang/open-saas) | 16,279 | 2023-12-01 | A 100% free modern JS SaaS boilerplate (React, NodeJS, Prisma) with auth, email sending, background jobs, landing page, payments, and file uploads, AI-ready with one-command deploy, for developers launching a SaaS quickly.<br>100% 免费的现代 JS SaaS 样板（React、NodeJS、Prisma），含认证、邮件、后台任务、落地页、支付与文件上传等全功能，AI-ready，一条命令部署，面向想快速启动 SaaS 的开发者。 |
@@ -1158,6 +1159,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [Yuzzyuk/marketing-os](https://github.com/Yuzzyuk/marketing-os) | 562 | 2026-08-17 | An entire marketing department as one Claude skill: 14 modules including audits scored 0–100, an 18-tactic hook engine, copy graded before you see it, ad diagnosis, GEO, email, launches and pricing; works in Claude, Codex and Cursor.<br>一个 Claude skill 就是一整个营销部门：14 个模块，含 0-100 评分审计、18 战术钩子引擎、预先评分的文案、广告诊断、GEO、邮件、发布与定价，适用于 Claude、Codex 与 Cursor，面向独立开发者与营销人员。 |
 | [zscole/adversarial-spec](https://github.com/zscole/adversarial-spec) | 557 | 2026-01-11 | A Claude Code plugin that iteratively refines product specifications by debating between multiple LLMs until all models reach consensus.<br>让多个 LLM 互相辩论、迭代打磨产品规格的 Claude Code 插件，直到所有模型达成共识，面向想提高需求文档质量的产品与开发团队。 |
 | [avansaber/seo-monster](https://github.com/avansaber/seo-monster) | 554 | 2026-05-28 | A local, user-credential-driven MCP server for SEO workflows over Google Search Console, GA4, PageSpeed Insights and Cloudflare; read-first and open source.<br>本地运行的 SEO 工作流 MCP 服务器：基于用户自己的凭证访问 Google Search Console、GA4、PageSpeed Insights 与 Cloudflare，只读优先、开源，面向 SEO 从业者。 |
+| [TaiT-tt/tait-crt-interface-skill](https://github.com/TaiT-tt/tait-crt-interface-skill) | 550 | 2026-08-02 | A Codex image-generation skill that turns user-uploaded portraits, photos or text prompts into retro illustrations with early CRT computer-interface texture.<br>Codex 图片生成 skill：把用户上传的人像、摄影或文字描述做成带早期 CRT 计算机界面质感的复古插画。 |
 | [makafeli/n8n-workflow-builder](https://github.com/makafeli/n8n-workflow-builder) | 549 | 2025-01-14 | AI assistant integration for n8n workflow automation through MCP — connect Claude Desktop, ChatGPT and other AI assistants to n8n for natural-language workflow management.<br>通过 MCP 把 AI 助手接入 n8n 工作流自动化：用自然语言管理 n8n 工作流，支持 Claude Desktop、ChatGPT 等 AI 助手。 |
 | [posit-dev/skills](https://github.com/posit-dev/skills) | 547 | 2025-11-21 | A collection of Claude Skills from Posit.<br>Posit 官方的 Claude Skills 合集，面向使用 Claude Code 的数据科学与开发用户。 |
 | [Sidiora-Labs/paxeer-monorepo](https://github.com/Sidiora-Labs/paxeer-monorepo) | 544 | 2026-08-14 | Paxeer X is a distributed hyperstate machine for payments, code execution and intent routing, designed for machines and the users operating them.<br>Paxeer X：面向支付、代码执行与意图路由的分布式超状态机，为机器及其操作者设计。 |
@@ -1189,6 +1191,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [CoWork-OS/CoWork-OS](https://github.com/CoWork-OS/CoWork-OS) | 511 | 2026-01-24 | A free, open-source AI app for real work — rent the model, own everything else.<br>免费开源的 AI 工作应用：只租模型，其余全归你所有，面向想要本地优先、可自托管的个人 AI 助手的用户。 |
 | [cordum-io/cordum](https://github.com/cordum-io/cordum) | 511 | 2026-01-11 | The action firewall for AI agents — enforce policy and human approval before risky tool calls, shell commands, workflows and production changes, with auditable evidence.<br>AI 智能体的动作防火墙：在高风险工具调用、shell 命令、工作流与生产变更之前强制执行策略与人工审批，并留存可审计证据，面向需要管控智能体风险的团队。 |
 | [EL4CTEO/blender-skills](https://github.com/EL4CTEO/blender-skills) | 508 | 2026-10-14 | Professional Blender 5.2 workflows as agent skills for Claude Code, Codex, Gemini CLI, Copilot and Cursor: modeling, UVs, PBR, baking, rigging, animation, export and QA.<br>Blender 5.2 专业工作流的 Agent Skills，面向 Claude Code、Codex、Gemini CLI、Copilot 与 Cursor：建模、UV、PBR、烘焙、绑定、动画、导出与 QA，面向 3D 创作者。 |
+| [sunchaokun/PPT-Design-Skill](https://github.com/sunchaokun/PPT-Design-Skill) | 507 | 2026-07-09 | A precision PPT design skill for OpenCode, Claude Code and Codex: 40,000+ styles, pixel-perfect layout, and natively editable PPTX output.<br>精准 PPT 设计 skill：给 OpenCode/Claude Code/Codex 用，4 万+ 样式，像素级排版，原生可编辑的 PPTX 输出。 |
 | [VikashLoomba/copilot-mcp](https://github.com/VikashLoomba/copilot-mcp) | 505 | 2025-02-17 | A VS Code extension that lets you find and install agent skills and MCP apps to use with GitHub Copilot, Claude Code and Codex CLI.<br>VS Code 扩展：查找并安装 Agent Skills 与 MCP 应用，供 GitHub Copilot、Claude Code 与 Codex CLI 使用。 |
 | [BOMWiki/partmode](https://github.com/BOMWiki/partmode) | 504 | 2026-08-06 | Open-source, local-first 3D parametric CAD that runs in the browser for people and permissioned typed agents, powered by OpenCascade WASM.<br>开源、本地优先的 3D 参数化 CAD，在浏览器中运行，面向人与获得授权的类型化智能体，基于 OpenCascade WASM，面向机械设计与 CAD 用户。 |
 | [EricTechPro/super-board](https://github.com/EricTechPro/super-board) | 503 | 2026-05-24 | An autonomous GitHub Project build → QA → review loop for Claude Code, with one-line install.<br>Claude Code 的自主 GitHub Project 构建 → QA → 评审循环，一行命令安装，面向想让 AI 自动推进项目看板的开发者。 |
@@ -1307,7 +1310,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [maddhruv/absolute](https://github.com/maddhruv/absolute) | 223 | 2026-03-14 | A skill collection aiming to 10x the development lifecycle, covering documentation, memory, product management, SEO and marketing, for users of Claude Code, Codex, Gemini and other agents.<br>旨在将开发全流程提速 10 倍的技能合集，覆盖文档、记忆、产品管理、SEO 与营销等环节，面向 Claude Code、Codex、Gemini 等平台用户。 |
 | [cactus-compute/needle](https://github.com/cactus-compute/needle) | 3 | 2026-02-24 | Automation foundation model for tiny devices: 2-bit, 8-29 MB, tool calls, ASR, structured extraction and embeddings on phones, wearables, smart homes, robots, cars and microcontrollers.<br>面向手机、可穿戴设备、智能家居、机器人等微型设备的自动化基础模型：2-bit 量化、仅 8–29 MB，支持工具调用、语音识别、结构化抽取与向量嵌入。 |
 
-## AI (755)
+## AI (757)
 
 | Repository | ★ Stars | Created | Summary |
 |---|---:|---|---|
@@ -1952,6 +1955,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [crafter-station/petdex](https://github.com/crafter-station/petdex) | 4,285 | 2026-05-02 | A public gallery of animated pets for Codex, Claude Code, DeepSeek Harness, Hermes, OpenCode, Gemini CLI, and more, for developers who want a mascot for their coding assistant.<br>面向 Codex、Claude Code、DeepSeek Harness 等编程 Agent 的动画宠物公开画廊，面向想给编程助手加个桌面宠物的开发者。 |
 | [arcboxlabs/arcbox](https://github.com/arcboxlabs/arcbox) | 4,249 | 2026-01-04 | Run AI agents on real, isolated machines — own kernel, filesystem, and network — with under-100ms boot, local-first, OCI-compatible, and pure Rust, for developers who need strongly isolated agent execution environments.<br>在真实隔离机器上运行 AI Agent：自有内核、文件系统与网络，启动不到 100 毫秒，本地优先、兼容 OCI、纯 Rust 实现，面向需要强隔离 Agent 执行环境的开发者。 |
 | [VoltAgent/awesome-claude-design](https://github.com/VoltAgent/awesome-claude-design) | 4,219 | 2026-04-18 | 68 ready-to-use design system inspirations in DESIGN.md format — drop one in and scaffold a full UI in one shot, for developers building interfaces quickly with Claude Design.<br>68 个即用型设计系统灵感（DESIGN.md 格式），放入一个即可一次脚手架出完整 UI，面向用 Claude Design 快速搭建界面的开发者。 |
+| [zhayujie/bot-on-anything](https://github.com/zhayujie/bot-on-anything) | 4,216 | 2023-02-09 | A large-model chatbot builder that quickly integrates AI models (ChatGPT, Claude, Gemini) into Gmail, Slack, Telegram and the web.<br>基于大模型的聊天机器人搭建器，能把 ChatGPT、Claude、Gemini 等模型快速接进 Gmail、Slack、Telegram 等渠道。 |
 | [yifanfeng97/Hyper-Extract](https://github.com/yifanfeng97/Hyper-Extract) | 4,199 | 2026-01-07 | Transform unstructured text into structured knowledge with LLMs — graphs, hypergraphs, and spatio-temporal extractions with one command, for knowledge-graph and RAG builders.<br>把非结构化文本转为结构化知识的工具：用 LLM 做图、超图与时空抽取，一条命令完成，面向知识图谱与 RAG 建设者。 |
 | [zvec-ai/zvec-grep](https://github.com/zvec-ai/zvec-grep) | 4,181 | 2026-07-10 | Local-first search across your workspace, built for humans and AI agents, combining full-text and semantic search, for developers who need to locate content in a codebase fast.<br>面向人类与 AI Agent 的本地优先工作区搜索，结合全文与向量检索，面向需要在代码库中快速定位内容的开发者。 |
 | [flypythoncom/python](https://github.com/flypythoncom/python) | 4,167 | 2012-09-06 | Open-source Python challenge courses — your AI coding agent teaches, and verify.py decides when you're done, for learners who want to study Python with an AI tutor.<br>开源 Python 挑战课程：AI 编程 Agent 负责教学，verify.py 判定是否完成，面向想边用 AI 边学 Python 的学习者。 |
@@ -2065,6 +2069,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [elliothux/open-compute](https://github.com/elliothux/open-compute) | 2,109 | 2026-08-23 | A self-hosted Cloudflare Workers-compatible platform packing Workers, KV, D1, R2, Durable Objects, Queues, Workflows, Cron, Cache, Images, Vectorize and more into a single Rust binary.<br>自托管的 Cloudflare Workers 兼容平台，把 Workers、KV、D1、R2、Durable Objects、Queues、Workflows、Cron 等装进一个 Rust 二进制文件，面向想自建边缘计算平台的开发者。 |
 | [Ephemeral-AI-Lab/layerfs](https://github.com/Ephemeral-AI-Lab/layerfs) | 2,083 | 2026-08-10 | A filesystem giving every agent a complete writable workspace over shared committed history without copying the base, letting agents work in parallel and commit changes as deduplicated checkpoints that can be branched, rewound or merged.<br>为 Agent 提供临时工作区与持久共享历史的文件系统：每个 Agent 在共享已提交历史之上获得完整可写工作区，无需复制基底，并行工作后把改动提交为去重检查点，可分支、回退或合并。 |
 | [jd-opensource/JoyAI-Video-Edit](https://github.com/jd-opensource/JoyAI-Video-Edit) | 1,969 | 2026-08-04 | The official repository for JoyAI-Video-Edit, a real-time open-ended video editing model built on autoregressive diffusion, for video editing and generative AI researchers.<br>京东官方开源仓库：基于自回归扩散的实时开放式视频编辑模型，面向视频编辑与生成式 AI 研究者。 |
+| [Mobirise/Mobirise](https://github.com/Mobirise/Mobirise) | 987 | 2015-05-15 | A free AI website builder for Windows, Mac and Linux: drag-and-drop, Bootstrap-based, no code required.<br>免费 AI 网站搭建器：拖拽式做网站，支持 Windows/Mac/Linux，基于 Bootstrap。 |
 | [Tencent/LoopForge](https://github.com/Tencent/LoopForge) | 981 | 2026-07-28 | Tencent's self-hosted workspace for shipping software with coding agents: orchestrate ten coding-agent CLIs (CodeBuddy, Codex, Claude Code, and more) via chat or reusable SOPs, with Docker sandboxes and human approval gates, delivering PRs.<br>腾讯出品的自托管编码 Agent 交付工作台：用聊天或可复用的 SOP 编排 CodeBuddy、Codex、Claude Code 等 10 种编码 Agent CLI，沙箱执行、人工审批把关，最终交付 PR。 |
 
 ## How it works / 运作方式
