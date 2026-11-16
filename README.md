@@ -4,7 +4,7 @@
 >
 > 每日追踪 GitHub 趋势榜上的 **AI agent skills** 与 **AI 热门仓库**：新上榜即收录，star 数每日刷新，附中英双语主页概括。
 
-**2054 repos tracked**, Skills 1296, AI 758, Total stars 35,190,776, Updated 2026-11-16
+**2053 repos tracked**, Skills 1296, AI 757, Total stars 35,189,789, Updated 2026-11-16
 
 📖 **Live catalog / 在线图鉴**: https://longkum.github.io/trending-agent-skills/
 
@@ -1311,7 +1311,7 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [maddhruv/absolute](https://github.com/maddhruv/absolute) | 223 | 2026-03-14 | A skill collection aiming to 10x the development lifecycle, covering documentation, memory, product management, SEO and marketing, for users of Claude Code, Codex, Gemini and other agents.<br>旨在将开发全流程提速 10 倍的技能合集，覆盖文档、记忆、产品管理、SEO 与营销等环节，面向 Claude Code、Codex、Gemini 等平台用户。 |
 | [cactus-compute/needle](https://github.com/cactus-compute/needle) | 3 | 2026-02-24 | Automation foundation model for tiny devices: 2-bit, 8-29 MB, tool calls, ASR, structured extraction and embeddings on phones, wearables, smart homes, robots, cars and microcontrollers.<br>面向手机、可穿戴设备、智能家居、机器人等微型设备的自动化基础模型：2-bit 量化、仅 8–29 MB，支持工具调用、语音识别、结构化抽取与向量嵌入。 |
 
-## AI (758)
+## AI (757)
 
 | Repository | ★ Stars | Created | Summary |
 |---|---:|---|---|
@@ -2072,7 +2072,6 @@ Raw data: [`data/repos.json`](data/repos.json)
 | [Ephemeral-AI-Lab/layerfs](https://github.com/Ephemeral-AI-Lab/layerfs) | 2,083 | 2026-08-10 | A filesystem giving every agent a complete writable workspace over shared committed history without copying the base, letting agents work in parallel and commit changes as deduplicated checkpoints that can be branched, rewound or merged.<br>为 Agent 提供临时工作区与持久共享历史的文件系统：每个 Agent 在共享已提交历史之上获得完整可写工作区，无需复制基底，并行工作后把改动提交为去重检查点，可分支、回退或合并。 |
 | [jd-opensource/JoyAI-Video-Edit](https://github.com/jd-opensource/JoyAI-Video-Edit) | 1,969 | 2026-08-04 | The official repository for JoyAI-Video-Edit, a real-time open-ended video editing model built on autoregressive diffusion, for video editing and generative AI researchers.<br>京东官方开源仓库：基于自回归扩散的实时开放式视频编辑模型，面向视频编辑与生成式 AI 研究者。 |
 | [Tencent/LoopForge](https://github.com/Tencent/LoopForge) | 1,747 | 2026-07-28 | Tencent's self-hosted workspace for shipping software with coding agents: orchestrate ten coding-agent CLIs (CodeBuddy, Codex, Claude Code, and more) via chat or reusable SOPs, with Docker sandboxes and human approval gates, delivering PRs.<br>腾讯出品的自托管编码 Agent 交付工作台：用聊天或可复用的 SOP 编排 CodeBuddy、Codex、Claude Code 等 10 种编码 Agent CLI，沙箱执行、人工审批把关，最终交付 PR。 |
-| [Mobirise/Mobirise](https://github.com/Mobirise/Mobirise) | 987 | 2015-05-15 | A free AI website builder for Windows, Mac and Linux: drag-and-drop, Bootstrap-based, no code required.<br>免费 AI 网站搭建器：拖拽式做网站，支持 Windows/Mac/Linux，基于 Bootstrap。 |
 
 ## How it works / 运作方式
 

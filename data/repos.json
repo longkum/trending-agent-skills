@@ -9197,27 +9197,6 @@
     "track": "skills",
     "url": "https://github.com/Mintplex-Labs/anything-llm"
   },
-  "Mobirise/Mobirise": {
-    "category": "other",
-    "created_at": "2015-05-15",
-    "description": "Free AI website builder for Windows, Mac and Linux. Release notes and downloads.",
-    "first_seen": "2026-11-15",
-    "gain_7d": 0,
-    "last_refreshed": "2026-11-15",
-    "stars": 987,
-    "summary": "免费 AI 网站搭建器：拖拽式做网站，支持 Windows/Mac/Linux，基于 Bootstrap。",
-    "summary_en": "A free AI website builder for Windows, Mac and Linux: drag-and-drop, Bootstrap-based, no code required.",
-    "summary_v": 2,
-    "tags": [
-      "ai-website-builder",
-      "bootstrap",
-      "drag-and-drop",
-      "no-code",
-      "html"
-    ],
-    "track": "ai",
-    "url": "https://github.com/Mobirise/Mobirise"
-  },
   "ModelEngine-Group/nexent": {
     "category": "agent",
     "created_at": "2025-04-28",
